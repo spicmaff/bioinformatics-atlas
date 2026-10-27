@@ -83,4 +83,5 @@ body:has(.portal-home) .content-panel+.content-panel,body:has(.module-navigator)
  .learning-block{padding:1.1rem}.learning-block .block-label{font-size:9px}.nw-experiment{margin-inline:0}.experiment-heading .eyebrow{font-size:9px}.experiment-controls .primary-button{font-size:12px}.experiment-controls .presets button{font-size:11px}.step-player button{font-size:11px}.katex-display{padding:1rem .75rem}.sl-menu-button{width:44px!important;height:44px!important;min-height:44px!important}
 }
 :root[data-motion=reduced] *, :root[data-motion=reduced] *::before,:root[data-motion=reduced] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media(max-width:799px){.module-focus h2{font-size:clamp(1.8rem,7.7vw,2.3rem)!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}

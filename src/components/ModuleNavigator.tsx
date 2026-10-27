@@ -12,6 +12,7 @@ export default function ModuleNavigator({modules}:{modules:Card[]}){
  const match=(m:Card,q:string)=>`${m.id} ${m.title} ${m.aliases.join(' ')} ${m.summary} ${m.methods.map(x=>x.name).join(' ')}`.toLowerCase().includes(q.toLowerCase());
  const results=modules.filter(m=>match(m,query)),shelf=query?results:modules.filter(m=>m.branch===current.branch),at=shelf.findIndex(m=>m.id===current.id);
  useEffect(()=>{const id=new URLSearchParams(location.search).get('module');if(id&&modules.some(m=>m.id===id))setSelected(id);},[]);
+ useEffect(()=>{const rail=tabs.current,card=rail?.querySelector<HTMLButtonElement>('[aria-selected="true"]');if(!rail||!card)return;const left=rail.scrollLeft+card.getBoundingClientRect().left-rail.getBoundingClientRect().left-(rail.clientWidth-card.clientWidth)/2;const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.motion==='reduced';rail.scrollTo({left:Math.max(0,left),behavior:reduced?'auto':'smooth'});},[selected,query]);
  function choose(id:string){setSelected(id);const p=new URLSearchParams(location.search);p.set('module',id);history.replaceState(null,'',`${location.pathname}?${p.toString()}`);}
  function changeBranch(id:string){setQuery('');const next=modules.find(m=>m.branch===id);if(next)choose(next.id);}
  function step(delta:number){if(shelf.length)choose(shelf[(Math.max(0,at)+delta+shelf.length)%shelf.length]!.id);}
