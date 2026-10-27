@@ -4,7 +4,7 @@ import type {Module} from '../lib/schema';
 import PixelSpecimen from './PixelSpecimen';
 type Card=Module&{href:string;chapterCount:number};
 const roles={core:'Основной модуль',advanced:'Углубление',adjacent:'Смежная область'};
-const shortNames=['Последовательности','Геномы и чтения','Эволюция геномов','Измерения','Спектры и белки','Данные и вывод','Оптимизация','Искусственная жизнь'];
+const shortNames=['Последовательности','Геномы и чтения','Сравнение геномов','Измерения','Спектры и белки','Данные и вывод','Оптимизация','Искусственная жизнь'];
 export default function ModuleNavigator({modules}:{modules:Card[]}){
  const first=modules.find(m=>m.status==='published')??modules[0]!;
  const [selected,setSelected]=useState(first.id),[query,setQuery]=useState('');const tabs=useRef<HTMLDivElement>(null);
