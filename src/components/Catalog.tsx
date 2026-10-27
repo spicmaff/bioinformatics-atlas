@@ -6,6 +6,8 @@ const roles = {core:'Ядро',advanced:'Углубление',adjacent:'Сме�
 const types = [['dna','Последовательности'],['reads','Чтения / геномы'],['matrix','Матрицы измерений'],['spectra','Спектры'],['model','Модели и агенты']];
 export default function Catalog({ modules }: { modules: Card[] }) {
   const [query,setQuery]=useState(''),[all,setAll]=useState(false),[branch,setBranch]=useState<string[]>([]),[role,setRole]=useState<string[]>([]),[data,setData]=useState<string[]>([]),[ready,setReady]=useState(false);
+  const [filtersOpen,setFiltersOpen]=useState(true);
+  useEffect(()=>{const media=window.matchMedia('(min-width: 1200px)');const sync=()=>setFiltersOpen(media.matches);sync();media.addEventListener('change',sync);return()=>media.removeEventListener('change',sync);},[]);
   useEffect(()=>{const p=new URLSearchParams(location.search);setQuery(p.get('q')||'');setAll(p.get('all')==='1');setBranch(p.getAll('branch'));setRole(p.getAll('role'));setData(p.getAll('data'));setReady(true);},[]);
   useEffect(()=>{if(!ready)return;const p=new URLSearchParams();if(query)p.set('q',query);if(all)p.set('all','1');branch.forEach(v=>p.append('branch',v));role.forEach(v=>p.append('role',v));data.forEach(v=>p.append('data',v));history.replaceState(null,'',`${location.pathname}${p.size?'?'+p.toString():''}${location.hash}`);},[query,all,branch,role,data,ready]);
   const toggle=(values:string[],v:string,set:(v:string[])=>void)=>set(values.includes(v)?values.filter(x=>x!==v):[...values,v]);
@@ -15,7 +17,7 @@ export default function Catalog({ modules }: { modules: Card[] }) {
     <div className="catalog-search"><label htmlFor="catalog-query">Название, вопрос, метод или ID</label><input id="catalog-query" type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Например: выравнивание, матрица, M01"/></div>
     <div className="catalog-toolbar"><div className="segmented" role="group" aria-label="Доступность модулей"><button onClick={()=>setAll(false)} aria-pressed={!all}>Доступные</button><button onClick={()=>setAll(true)} aria-pressed={all}>Вся программа · {modules.length}</button></div><p aria-live="polite" aria-atomic="true">Найдено модулей: <strong>{cards.length}</strong></p></div>
     <div className="catalog-layout">
-      <details className="catalog-filters" open><summary>Фильтры</summary>
+      <details className="catalog-filters" open={filtersOpen} onToggle={e=>setFiltersOpen(e.currentTarget.open)}><summary>Фильтры</summary>
         <fieldset><legend>Ветка</legend>{branches.map(b=><label key={b.id}><input type="checkbox" checked={branch.includes(b.id)} onChange={()=>toggle(branch,b.id,setBranch)}/><span>{b.title}</span></label>)}</fieldset>
         <fieldset><legend>Данные</legend>{types.map(([id,title])=><label key={id}><input type="checkbox" checked={data.includes(id!)} onChange={()=>toggle(data,id!,setData)}/>{title}</label>)}</fieldset>
         <fieldset><legend>Место в программе</legend>{Object.entries(roles).map(([id,title])=><label key={id}><input type="checkbox" checked={role.includes(id)} onChange={()=>toggle(role,id,setRole)}/>{title}</label>)}</fieldset><button onClick={reset}>Сбросить фильтры</button>
