@@ -23,7 +23,7 @@ export default function Catalog({ modules }: { modules: Card[] }) {
       <div>{!cards.length&&<div className="empty-state"><h2>Совпадений нет</h2><p>Ни один модуль не соответствует сочетанию условий.</p><button onClick={reset}>Сбросить фильтры</button></div>}
         <div className="module-grid">{cards.map(m=><a className="module-card" href={m.href} key={m.id}>
           <div className="card-meta"><span>{m.id}</span><span>{roles[m.role]}</span></div><h2>{m.title}</h2><p>{m.summary}</p>
-          <div className="method-tags">{m.methods.slice(0,3).map((method,i)=><span key={i}>{method.name.replace(/\b(P|V1|V2|CGR|NEU):\s*/g,'')}</span>)}</div>
+          <div className="method-tags">{m.methods.flatMap(method=>method.name.replace(/\b(?:P|V1|V2|CGR|NEU)(?:\/(?:P|V1|V2|CGR|NEU))*:\s*/g,'').split(/[,;]/)).slice(0,3).map((name,i)=><span key={i}>{name.trim()}</span>)}</div>
           <div className="card-footer"><span>{m.sources.map(s=>s.work).join(' / ')}</span><span className={m.status==='published'?'availability':'planned-badge'}>{m.status==='published'?`${m.chapterCount} глава доступна`:'В программе'}</span></div>
         </a>)}</div>
       </div>

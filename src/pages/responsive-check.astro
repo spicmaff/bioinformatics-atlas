@@ -1,0 +1,14 @@
+---
+import { withBase } from '../lib/url';
+const chapter=withBase('modules/pairwise-alignment/needleman-wunsch/');
+---
+<!doctype html><html lang="ru" data-pagefind-ignore="all"><head><meta charset="utf-8"/><meta name="robots" content="noindex,nofollow"/><title>Проверка адаптивности атласа</title><meta name="viewport" content="width=device-width,initial-scale=1"/></head><body>
+<header><strong>Проверка реальных страниц</strong><label>Ширина viewport<select id="width"><option value="390">390 px</option><option value="320">320 px</option><option value="768">768 px</option></select></label><label>Страница<select id="page"><option value={chapter}>Учебная глава</option><option value={withBase('catalog/')}>Каталог</option><option value={withBase('modules/pairwise-alignment/')}>Модуль</option><option value={withBase()}>Главная</option></select></label></header>
+<iframe title="Атлас в узком viewport" src={chapter} width="390" height="844"></iframe>
+<script>
+const frame=document.querySelector('iframe')!;
+document.querySelector('#width')!.addEventListener('change',e=>{frame.width=(e.target as HTMLSelectElement).value;});
+document.querySelector('#page')!.addEventListener('change',e=>{frame.src=(e.target as HTMLSelectElement).value;});
+</script>
+</body></html>
+<style>body{margin:0;background:#dde4e2;font:16px Arial,sans-serif}header{padding:12px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}label{display:flex;align-items:center;gap:8px}select{min-height:44px;padding:6px;font-size:16px}iframe{display:block;border:1px solid #52616b;margin:8px 24px;background:white}</style>

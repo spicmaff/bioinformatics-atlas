@@ -1,0 +1,15 @@
+---
+title: Страница не найдена
+template: splash
+tableOfContents: false
+head:
+  - tag: meta
+    attrs:
+      name: robots
+      content: noindex
+---
+import { withBase } from '@/lib/url';
+
+Проверьте адрес страницы или используйте поиск. Планируемые темы доступны в программе; учебные страницы появляются по мере написания глав.
+
+<a href={withBase('catalog/')}>Каталог методов</a> · <a href={withBase('program/')}>Программа и готовность</a>
