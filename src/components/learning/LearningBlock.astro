@@ -1,0 +1,6 @@
+---
+interface Props { kind: 'definition'|'example'|'algorithm'|'counterexample'|'exercise'; title?: string; }
+const { kind, title } = Astro.props;
+const names = { definition: 'Определение', example: 'Пример', algorithm: 'Алгоритм', counterexample: 'Контрпример', exercise: 'Упражнение' };
+---
+<section class:list={['learning-block',`learning-${kind}`]} aria-label={title || names[kind]}><div class="block-label">{names[kind]}{title && <span> · {title}</span>}</div><slot /></section>

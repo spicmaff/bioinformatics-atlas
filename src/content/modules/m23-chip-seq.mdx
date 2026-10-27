@@ -1,0 +1,39 @@
+---
+id: M23
+slug: chip-seq
+title: 'ChIP-seq: сигнал над фоном'
+title_en: Enrichment/peak calling
+branch: assays-regulation
+role: advanced
+status: planned
+question: 'Как решается задача «ChIP-seq: сигнал над фоном»?'
+summary: Картированные ChIP/Input и метаданные → кандидаты обогащённых областей, QC и аннотации.
+feature: Сдвигаем минус-концы относительно плюс-концов и видим Jaccard-кривую. В проверенной идеальной модели максимум
+  восстанавливает заданный сдвиг 120 bp; артефакты и смесь длин нарушают простую картину.
+prerequisites:
+- ref: M07
+- ref: M22
+- ref: M19
+methods:
+- name: 'CGR: окна/counts, контроль и assay-specific normalization, shift/Jaccard QC'
+  sources:
+  - cgr
+- name: binomial mixture/background в normR, проверки/q-values, narrow/broad bins, merge, reads-in-peaks, PWM-QC.
+    Оценивание смеси показано готовой функцией.
+  sources:
+  - cgr
+sources:
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M23; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 5
+sort_order: 10
+aliases: []
+tags:
+- matrix
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

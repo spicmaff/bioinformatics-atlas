@@ -1,0 +1,35 @@
+- id: P
+  title: Bioinformatics and Functional Genomics
+  authors: Jonathan Pevsner
+  note: Метка исходного плана; издание и локаторы сверяются по экземпляру перед написанием главы.
+- id: V1
+  title: Bioinformatics Algorithms, Volume I
+  authors: Phillip Compeau; Pavel Pevzner
+  url: https://www.bioinformaticsalgorithms.org/
+  note: Метка тома I из плана; номера страниц не переносятся между изданиями.
+- id: V2
+  title: Bioinformatics Algorithms, Volume II
+  authors: Phillip Compeau; Pavel Pevzner
+  url: https://www.bioinformaticsalgorithms.org/
+  note: Метка тома II из плана.
+- id: CGR
+  title: Computational Genomics with R
+  authors: Altuna Akalin
+  url: https://compgenomr.github.io/book/
+- id: NEU
+  title: Neuroevolution
+  authors: Источник NEU в программе v2
+  url: https://neuroevolutionbook.com/ne_book.html
+- id: PLAN
+  title: Итоговая программа и план реализации — v2
+  authors: Редакторский документ проекта
+  note: 27 октября 2026; полный текст в docs/06_site_plan_v2.md. Программа не является первичным доказательством
+    научного утверждения.
+- id: NW1970
+  title: A general method applicable to the search for similarities in the amino acid sequence of two proteins
+  authors: Saul B. Needleman; Christian D. Wunsch
+  year: 1970
+  doi: 10.1016/0022-2836(70)90057-4
+  url: https://doi.org/10.1016/0022-2836(70)90057-4
+  note: Journal of Molecular Biology 48(3), 443–453. Исторический первоисточник; современная линейная рекурсия
+    в главе дана как учебная постановка.

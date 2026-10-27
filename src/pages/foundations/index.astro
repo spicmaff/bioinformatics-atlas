@@ -1,0 +1,6 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { readFoundations, resolveRef } from '../../lib/content';
+import { withBase } from '../../lib/url';
+---
+<StarlightPage frontmatter={{title:'Основы',template:'splash',tableOfContents:false}} hasSidebar={false}><p class="page-lead">Четыре короткие опоры. Открывайте их в момент, когда нужно уточнить обозначение или условие; отдельного вводного курса проходить не требуется.</p><div class="foundation-grid not-content">{readFoundations().filter(e=>e.data.status==='published').sort((a,b)=>a.data.order-b.data.order).map(e=><a href={withBase(resolveRef(e.data.id))}><span class="eyebrow">{e.data.id}</span><h2>{e.data.title}</h2><p>{e.data.summary}</p></a>)}</div></StarlightPage>

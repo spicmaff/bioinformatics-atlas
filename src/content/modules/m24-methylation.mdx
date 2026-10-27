@@ -1,0 +1,47 @@
+---
+id: M24
+slug: methylation
+title: 'Метилирование: доли, различия, сегменты'
+title_en: DNA methylation
+branch: assays-regulation
+role: advanced
+status: planned
+question: 'Как решается задача «Метилирование: доли, различия, сегменты»?'
+summary: C/T-счётчики, покрытие, образцы и координаты → доли, DMC/DMR либо сегментация одного метилома.
+feature: 'Меняем покрытие двух CpG: 9/10 и 10/100. Среднее долей — 50%, доля объединённых счётчиков — 17,27%. Показываем
+  обе операции: они оценивают разные региональные величины. Это один образец, не объединение реплик.'
+prerequisites:
+- ref: M07
+- ref: M22
+- ref: M19
+methods:
+- name: 'CGR: conversion/QC/coverage/SNP filters'
+  sources:
+  - cgr
+- name: Fisher с ограничениями pooling
+  sources:
+  - cgr
+- name: binomial-logistic/overdispersion, beta-binomial/DSS
+  sources:
+  - cgr
+- name: региональные counts
+  sources:
+  - cgr
+- name: methSeg change-points→mixture/BIC, аннотация. Внутренний solver сегментации не выведен.
+  sources:
+  - cgr
+sources:
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M24; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 5
+sort_order: 20
+aliases: []
+tags:
+- matrix
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

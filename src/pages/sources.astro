@@ -1,0 +1,13 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { readWorks } from '../lib/content';
+import { withBase } from '../lib/url';
+---
+<StarlightPage frontmatter={{title:'Источники и воспроизводимость',template:'splash',tableOfContents:false}} hasSidebar={false}>
+  <p class="page-lead">Источник программы, первичный научный источник и собственный учебный пример обозначаются отдельно.</p>
+  <h2>Как читать ссылки</h2><p>У каждой главы есть источник с конкретным локатором и глубиной использования: механизм, пример, упоминание или внешний первоисточник. Записи планируемых модулей сохраняют метки из программы v2; неуточнённые локаторы явно подписаны и не означают проверки соответствующих книг.</p>
+  <div class="bibliography not-content">{readWorks().map(w=><section id={w.id}><span class="eyebrow">{w.id}</span><h2>{w.url?<a href={w.url}>{w.title}</a>:w.title}</h2><p>{w.authors}{w.year&&` · ${w.year}`}</p>{w.doi&&<p>DOI: {w.doi}</p>}{w.note&&<p>{w.note}</p>}</section>)}</div>
+  <h2 id="reproducibility">Повторить эксперимент</h2><p>Сохраняйте исходные данные, параметры, версию алгоритма и режим исполнения. Эксперимент Needleman–Wunsch экспортирует JSON с матрицей, состояниями и выравниваниями. Его примеры синтетические; score не является статистической вероятностью или доказательством общего происхождения.</p>
+  <ul><li><strong>B:</strong> вычисление в браузере из текущего входа.</li><li><strong>P:</strong> происхождение данных — воспроизводимый предрасчёт.</li><li><strong>R:</strong> просмотр сохранённого результата. Параметры вычисления фиксированы.</li><li><strong>S:</strong> отдельный сервис. В этой версии отсутствует.</li></ul>
+  <p><a href={withBase('foundations/reproducibility/')}>Краткая опора по воспроизводимости</a> · <a href="https://github.com/spicmaff/bioinformatics-atlas/blob/main/docs/06_site_plan_v2.md">Исходный план v2</a></p>
+</StarlightPage>

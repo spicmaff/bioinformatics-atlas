@@ -1,0 +1,39 @@
+---
+id: K04
+slug: peptide-identification
+title: Пептидная идентификация и белковые свидетельства
+title_en: Peptide identification/protein evidence
+branch: spectra-proteins
+role: core
+status: planned
+question: Как решается задача «Пептидная идентификация и белковые свидетельства»?
+summary: Спектры и база белков → PSM, оценки случайных совпадений и совместимые белки/группы.
+feature: 'Кейс V2 с загрязнением: сильный PSM не удостоверяет происхождение материала. Добавляем известный загрязнитель
+  и видим совпадение, decoy-оценку и неопределённость источника.'
+prerequisites:
+- ref: M19
+methods:
+- name: 'P: peptide–protein graph, общие пептиды/неразличимость. V2: database score/PSMSEARCH, учебный decoy-FDR,
+    spectral dictionaries/ДП масса–score, случайные попадания, модификации/spectral alignment.'
+  sources:
+  - p
+  - v2
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, K04; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: v2
+  work: V2
+  locator: Программа v2, §2, K04; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 4
+sort_order: 10
+aliases: []
+tags:
+- spectra
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

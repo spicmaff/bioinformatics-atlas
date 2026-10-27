@@ -1,0 +1,40 @@
+---
+id: M22
+slug: genomic-intervals
+title: Геномные интервалы и сигналы
+title_en: Genome arithmetic
+branch: reads-genomes
+role: core
+status: planned
+question: Как решается задача «Геномные интервалы и сигналы»?
+summary: Интервалы/чтения/покрытие с версией генома и координатами → пересечения, counts, ближайшие объекты и региональные
+  профили.
+feature: 'Растягиваем постоянные участки покрытия: RLE хранит значение и длину серии вместо каждой позиции. Видим
+  сжатую запись и точное восстановление; на чередующемся сигнале выигрыш исчезает.'
+prerequisites:
+- ref: F-DATA
+methods:
+- name: 'CGR: GRanges/IRanges, many-to-many overlaps, count/nearest/distance, объединение интервалов, coverage'
+  sources:
+  - cgr
+- name: run-length encoding, Views/bigWig-запросы
+  sources:
+  - cgr
+- name: согласованное подмножество assays/rowRanges/colData, strand-aware TSS-профили.
+  sources:
+  - cgr
+sources:
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M22; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 2
+sort_order: 20
+aliases: []
+tags:
+- reads
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

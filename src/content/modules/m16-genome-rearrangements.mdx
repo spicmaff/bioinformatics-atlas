@@ -1,0 +1,37 @@
+---
+id: M16
+slug: genome-rearrangements
+title: Перестройки геномов
+title_en: Genome rearrangements
+branch: genome-comparison
+role: advanced
+status: planned
+question: Как решается задача «Перестройки геномов»?
+summary: Два порядка ориентированных однокопийных блоков → расстояние и сценарий в выбранной модели операций.
+feature: Для `(−6,+1,+2,+3,+4,+5)` жадная сортировка требует 10 реверсий, оптимум — 2. Сравниваем сценарии; минимальный
+  всё равно не доказывает реальную историю.
+prerequisites:
+- ref: F-BIO
+- ref: F-ALGORITHM
+methods:
+- name: 'V1: signed permutations, reversals, GreedySorting, breakpoints/нижние границы'
+  sources:
+  - v1
+- name: breakpoint graph, 2-break/DCJ, точные n−c и сортировка круговых геномов.
+  sources:
+  - v1
+sources:
+- id: v1
+  work: V1
+  locator: Программа v2, §2, M16; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 4
+sort_order: 60
+aliases: []
+tags:
+- reads
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

@@ -1,0 +1,42 @@
+---
+id: M30
+slug: pareto-optimization
+title: Компромиссы между целями
+title_en: Multiobjective/Pareto optimization
+branch: optimization
+role: advanced
+status: planned
+question: Как решается задача «Компромиссы между целями»?
+summary: Несколько целей и допустимые решения → приближение множества недоминируемых компромиссов, из которого выбирают
+  по предпочтениям.
+feature: Двигаем вес двух минимизируемых целей для точек A=(0,2), B=(1.2,1.2), C=(2,0). B недоминируема, но ни одна
+  положительная взвешенная сумма её не выберет. Контрпример проверен; показывает, зачем искать фронт, а не один
+  scalar score.
+prerequisites:
+- ref: M26
+- ref: M19
+methods:
+- name: 'NEU: dominance, Pareto fronts, weighted sums и масштабы'
+  sources:
+  - neu
+- name: 'NSGA-II: sorting, parent–offspring union, crowding distance и усечение'
+  sources:
+  - neu
+- name: 'NSGA-III — обзор. Примеры: accuracy/размер сети, качество/стоимость связей.'
+  sources:
+  - neu
+sources:
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M30; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 6
+sort_order: 20
+aliases: []
+tags:
+- model
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

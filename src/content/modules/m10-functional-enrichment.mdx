@@ -1,0 +1,40 @@
+---
+id: M10
+slug: functional-enrichment
+title: Функциональная интерпретация
+title_en: Functional enrichment
+branch: assays-regulation
+role: core
+status: planned
+question: Как решается задача «Функциональная интерпретация»?
+summary: Список/ранжирование генов, аннотации и фон → категории с избытком попаданий по определённой нулевой модели.
+feature: Не меняя список, переключаем фон «весь геном / реально измеренные гены». Меняются ожидаемые попадания и
+  значимость; фон является частью вопроса, а не настройкой оформления.
+prerequisites:
+- ref: M19
+- ref: F-DATA
+methods:
+- name: 'P: GO, ORA, гипергеометрический/Fisher, running-sum GSEA, множественные проверки. CGR: практические ORA/g:Profiler
+    и GAGE, преобразование ID и ортологов в упражнениях. GAGE и GSEA — разные процедуры.'
+  sources:
+  - p
+  - cgr
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, M10; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M10; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 2
+sort_order: 40
+aliases: []
+tags:
+- matrix
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

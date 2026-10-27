@@ -1,0 +1,55 @@
+---
+id: M20
+slug: dimension-reduction
+title: Снижение размерности
+title_en: Dimension reduction
+branch: data-inference
+role: core
+status: planned
+question: Как решается задача «Снижение размерности»?
+summary: Матрица «образцы × признаки» → компактные координаты, нагрузки и, для факторизаций, приближение исходной
+  матрицы.
+feature: В проверенном примере PC1 сохраняет 99,01% вариации, но удаляет координату, полностью различающую два класса.
+  Меняем масштаб признака и число компонент; видим проекцию, остаток и потерянную информацию.
+prerequisites:
+- ref: F-DATA
+methods:
+- name: 'CGR: центрирование/scaling, PCA через covariance/eigen/SVD, scores/loadings и reconstruction'
+  sources:
+  - cgr
+  - neu
+- name: ICA, NMF
+  sources:
+  - cgr
+  - neu
+- name: classical/nonmetric MDS
+  sources:
+  - cgr
+  - neu
+- name: 't-SNE, соседские вероятности, KL/perplexity и повторные запуски. NEU: PCA/autoencoder в AURORA'
+  sources:
+  - cgr
+  - neu
+- name: VAE и latent dynamics в World Models. UMAP — лишь упоминание/рисунок.
+  sources:
+  - cgr
+  - neu
+sources:
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M20; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M20; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 1
+sort_order: 50
+aliases: []
+tags:
+- matrix
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

@@ -1,0 +1,58 @@
+---
+id: M28
+slug: indirect-encoding
+title: Компактные кодировки сложных решений
+title_en: Indirect encodings
+branch: neuro-alife
+role: adjacent
+status: planned
+question: Как решается задача «Компактные кодировки сложных решений»?
+summary: Небольшой генотип и правило развёртывания → изображение, сеть или форма с большим числом элементов.
+feature: 'Меняем одну функцию CPPN и разрешение координатной сетки: одна и та же программа создаёт повторения и
+  симметрию на разных масштабах. Затем ломаем регулярность цели: компактное представление помогает не всем задачам.
+  Симметрия выбранной функции проверена; эволюция такого рисунка — проект.'
+prerequisites:
+- ref: M26
+- ref: M21
+methods:
+- name: 'NEU: прямые/косвенные кодировки'
+  sources:
+  - neu
+- name: L-systems/cellular encoding
+  sources:
+  - neu
+- name: CPPN с разными активациями
+  sources:
+  - neu
+- name: 'HyperNEAT: запрос пары координат, substrate/LEO'
+  sources:
+  - neu
+- name: 'ES-HyperNEAT: quadtree и детализация по вариации'
+  sources:
+  - neu
+- name: статические/динамические hypernetworks
+  sources:
+  - neu
+- name: DCT и learned generative decoder/LVE. Human/implicit selection, Picbreeder и user fatigue
+  sources:
+  - neu
+- name: человеческий выбор — режим оценки.
+  sources:
+  - neu
+sources:
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M28; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 7
+sort_order: 20
+aliases: []
+tags:
+- model
+related: []
+planned_chapters:
+- slug: human-selection
+  title: K05 — M28; ссылки на M27/M34
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "generation": "precomputed",
+  "execution": "replay",
+  "producer": "npm run precompute:demo",
+  "algorithm_version": "nw-linear-v1",
+  "provenance": "synthetic-teaching-example",
+  "result": {
+    "a": "A",
+    "b": "AA",
+    "scoring": {
+      "match": 2,
+      "mismatch": -1,
+      "gap": -2
+    },
+    "matrix": [
+      [
+        0,
+        -2,
+        -4
+      ],
+      [
+        -2,
+        2,
+        0
+      ]
+    ],
+    "predecessors": [
+      [
+        [],
+        [
+          "left"
+        ],
+        [
+          "left"
+        ]
+      ],
+      [
+        [
+          "up"
+        ],
+        [
+          "diagonal"
+        ],
+        [
+          "diagonal",
+          "left"
+        ]
+      ]
+    ],
+    "steps": [
+      {
+        "i": 1,
+        "j": 1,
+        "candidates": {
+          "diagonal": 2,
+          "up": -4,
+          "left": -4
+        },
+        "moves": [
+          "diagonal"
+        ]
+      },
+      {
+        "i": 1,
+        "j": 2,
+        "candidates": {
+          "diagonal": 0,
+          "up": -6,
+          "left": 0
+        },
+        "moves": [
+          "diagonal",
+          "left"
+        ]
+      }
+    ],
+    "score": 0,
+    "alignments": [
+      {
+        "a": "−A",
+        "b": "AA",
+        "path": [
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "a": "A−",
+        "b": "AA",
+        "path": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            0,
+            0
+          ]
+        ]
+      }
+    ],
+    "optimalCount": "2",
+    "truncated": false,
+    "version": "nw-linear-v1"
+  }
+}

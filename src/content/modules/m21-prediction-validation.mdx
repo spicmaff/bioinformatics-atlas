@@ -1,0 +1,54 @@
+---
+id: M21
+slug: prediction-validation
+title: Прогнозирование и проверка моделей
+title_en: Prediction/validation
+branch: data-inference
+role: core
+status: planned
+question: Как решается задача «Прогнозирование и проверка моделей»?
+summary: Признаки, известные ответы и схема разделения данных → модель и оценка работы на новых образцах.
+feature: 'Книжное применение — прогноз возраста по CpG-метилированию. Переключаем возрастные диапазоны и смотрим
+  OOB-остатки: хорошая общая оценка способна скрыть систематическую ошибку для старших возрастов. Пока проект воспроизведения
+  сохранённого расчёта.'
+prerequisites:
+- ref: M19
+- ref: F-DATA
+methods:
+- name: 'CGR: preprocessing/imputation, stratified split/CV/OOB, kNN, деревья/RF, logistic и ridge/lasso/elastic
+    net'
+  sources:
+  - cgr
+  - neu
+- name: importance, ROC/AUC, imbalance/SMOTE/weights
+  sources:
+  - cgr
+  - neu
+- name: 'boosting/SVM/NN обзорно с кодом, regression. Внешн.: обучение preprocessing внутри folds. NEU: FNN/backprop,
+    RNN/LSTM/CNN/attention'
+  sources:
+  - cgr
+  - neu
+- name: ансамбли. Подбор признаков/параметров — внешняя петля с независимой итоговой оценкой после поиска.
+  sources:
+  - cgr
+  - neu
+sources:
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M21; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M21; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 2
+sort_order: 50
+aliases: []
+tags:
+- matrix
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

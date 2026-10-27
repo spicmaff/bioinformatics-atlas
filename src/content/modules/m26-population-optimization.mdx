@@ -1,0 +1,52 @@
+---
+id: M26
+slug: population-optimization
+title: Эволюционный поиск
+title_en: Evolutionary search
+branch: optimization
+role: advanced
+status: planned
+question: Как решается задача «Эволюционный поиск»?
+summary: Представление кандидата, ограничения и вычислимая оценка fitness → найденные решения и история поиска.
+  Учимся искать без производной целевой функции.
+feature: Поворачиваем вытянутую долину и меняем шаг мутации; видим популяцию, эллипс поиска и лучший результат.
+  Серии при равном бюджете показывают пользу адаптации направлений и разброс. Это проект интерактива; простые GA/ES-сравнения
+  ранее выполнены на этапе 5, полный CMA здесь не запускался.
+prerequisites:
+- ref: F-ALGORITHM
+- ref: M19
+methods:
+- name: 'NEU: GA: отбор, crossover, mutation, replacement'
+  sources:
+  - neu
+- name: (μ,λ)/(μ+λ)-ES, Gaussian search
+  sources:
+  - neu
+- name: 'CMA-ES: среднее, ковариация и масштаб'
+  sources:
+  - neu
+- name: 'OpenAI ES: оценка градиента ожидаемого сглаженного fitness, rank shaping. GP, DE, PSO, ACO, EDA — обзорные
+    варианты внутри темы. Генеративные операторы: GP/LLM, ELM/LMX/EvoLLM, prompt evolution, AlphaEvolve как комбинация
+    вариации, проверки и архива'
+  sources:
+  - neu
+- name: подробные различия и режим replay — во внутренних разделах.
+  sources:
+  - neu
+sources:
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M26; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 6
+sort_order: 10
+aliases: []
+tags:
+- model
+related: []
+planned_chapters:
+- slug: generative-variation
+  title: K07 — M26; ссылки на M29/M33
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

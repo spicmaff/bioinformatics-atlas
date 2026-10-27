@@ -1,0 +1,51 @@
+---
+id: M17
+slug: clustering
+title: Кластеризация
+title_en: Clustering
+branch: data-inference
+role: core
+status: planned
+question: Как решается задача «Кластеризация»?
+summary: Матрица признаков и мера сходства → группы, центры или иерархия для исследования структуры данных.
+feature: 'В книжном примере silhouette выбирает 4 группы, gap — 6, клинических меток — 5. Меняем критерий и k, видим
+  назначения и оценки: единственный «истинный k» из этих чисел не следует.'
+prerequisites:
+- ref: F-DATA
+methods:
+- name: 'V2: k-center/farthest-first, SSE/Lloyd, k-means++ с D²-инициализацией, soft assignments/EM на смеси монет,
+    single/average, corrupted cliques/CAST. V2/CGR: Euclidean/Pearson. CGR: Manhattan/scaling, complete/Ward, PAM/k-medoids,
+    silhouette/gap с нулевым моделированием/1-SE. NEU: k-means для CVT-ячеек MAP-Elites и evolve-and-merge локальных
+    правил'
+  sources:
+  - v2
+  - cgr
+  - neu
+- name: это применения прежнего solver.
+  sources:
+  - v2
+  - cgr
+  - neu
+sources:
+- id: v2
+  work: V2
+  locator: Программа v2, §2, M17; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M17; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M17; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 1
+sort_order: 60
+aliases: []
+tags:
+- matrix
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

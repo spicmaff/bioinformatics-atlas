@@ -1,0 +1,86 @@
+import Definition from '@/components/learning/Definition.astro';
+import Example from '@/components/learning/Example.astro';
+import Algorithm from '@/components/learning/Algorithm.astro';
+import Counterexample from '@/components/learning/Counterexample.astro';
+import Exercise from '@/components/learning/Exercise.astro';
+import { withBase } from '@/lib/url';
+
+<span id="question"></span>
+
+## Вопрос
+
+Сформулируйте один проверяемый вопрос. Укажите биологический смысл и границу учебной модели.
+
+<span id="input-output"></span>
+
+## Вход и выход
+
+Опишите входные объекты, единицы, допустимый размер и результат. Разделите данные, параметры и настройки отображения.
+
+<span id="prerequisites"></span>
+
+## Необходимые знания
+
+Добавьте ссылки на существующие опоры через withBase. Обязательные зависимости укажите в frontmatter.
+
+<span id="intuition"></span>
+
+## Интуитивный пример
+
+<Example title="Малый контроль">
+
+Разберите вход вручную до интерактива. Подпишите происхождение: собственный учебный пример или реальные данные с источником.
+
+</Example>
+
+<span id="theory"></span>
+
+## Теория и условия
+
+<Definition title="Основное понятие">
+
+Дайте точное определение и расшифруйте обозначения. Добавляйте формулы через KaTeX.
+
+</Definition>
+
+<span id="mechanism"></span>
+
+## Механизм
+
+<Algorithm title="Состояние и переход">
+
+Опишите шаги, границы, правило ничьих, стоимость вычисления и остановку.
+
+</Algorithm>
+
+<span id="experiment"></span>
+
+## Эксперимент
+
+Подключите существующий зарегистрированный интерактив. Для нового вычислительного механизма сначала реализуйте чистую функцию, контроли и React-компонент. Текстовая заглушка не является готовым экспериментом.
+
+<span id="limitations"></span>
+
+## Контрпример и ограничения
+
+<Counterexample title="Когда вывод меняется">
+
+Покажите конкретный вход или нарушение условия. Укажите, что вывод не доказывает.
+
+</Counterexample>
+
+<span id="practice"></span>
+
+## Практика
+
+<Exercise title="Проверить самостоятельно">
+
+Дайте небольшое задание с проверяемым ответом и объяснением.
+
+</Exercise>
+
+<span id="source-notes"></span>
+
+## Примечания об источниках
+
+Заполните sources в frontmatter: work, точный locator и depth. Общий список источников добавит шаблон страницы. Не придумывайте страницы, прочтение или воспроизведение.

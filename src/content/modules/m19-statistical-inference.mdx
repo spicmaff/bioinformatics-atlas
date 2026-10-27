@@ -1,0 +1,53 @@
+---
+id: M19
+slug: statistical-inference
+title: Неопределённость и статистический вывод
+title_en: Statistical inference
+branch: data-inference
+role: core
+status: planned
+question: Как решается задача «Неопределённость и статистический вывод»?
+summary: Измерения независимых образцов и статистический вопрос → размер эффекта, интервал, тест и поправка на семейство
+  проверок.
+feature: 'Повторяем независимые выборки и строим интервалы: видны покрытие истинного среднего и ширина. Затем размножаем
+  технические измерения одного образца; наивный узкий интервал не означает добавления независимых биологических
+  данных. Оптимизм выбора по шуму сохранён отдельным примером.'
+prerequisites:
+- ref: F-DATA
+methods:
+- name: 'CGR: выборка/распределения Normal, binomial, Poisson/NB'
+  sources:
+  - cgr
+  - neu
+- name: bootstrap/CLT/t-интервалы, permutation/Welch t
+  sources:
+  - cgr
+  - neu
+- name: Bonferroni/BH/q-value
+  sources:
+  - cgr
+  - neu
+- name: 'OLS, коэффициенты/CI, остатки, категории/дизайн. NEU: шум rollout-fitness и вариабельность запусков. Редакторское
+    дополнение: одинаковый бюджет, независимая повторная оценка после выбора.'
+  sources:
+  - cgr
+  - neu
+sources:
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M19; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M19; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 1
+sort_order: 40
+aliases: []
+tags:
+- matrix
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

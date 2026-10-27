@@ -1,0 +1,43 @@
+---
+id: M27
+slug: neuroevolution
+title: Эволюция весов и топологии сети
+title_en: Neuroevolution/NEAT
+branch: neuro-alife
+role: adjacent
+status: planned
+question: Как решается задача «Эволюция весов и топологии сети»?
+summary: Входы и выходы сети, среда либо размеченные примеры → веса и, при структурном поиске, граф работающей сети.
+feature: Два родителя вычисляют одну функцию, но узлы записаны в разном порядке. На проверенном примере скрещивание
+  по позиции разрушает результат; показываем гены и выходы до/после согласования. Историческая маркировка решает
+  задачу происхождения генов, а не гарантирует хорошего потомка.
+prerequisites:
+- ref: M26
+- ref: M21
+methods:
+- name: 'NEU: фиксированная топология + GA/ES'
+  sources:
+  - neu
+- name: 'NEAT: innovation numbers, matching/disjoint/excess genes, structural mutations, compatibility/speciation
+    и fitness sharing'
+  sources:
+  - neu
+- name: recurrent controllers. Deep GA и ES fine-tuning LLM — кейсы масштабирования, не универсальные гарантии.
+    rtNEAT/NERO — пример обновления популяции при взаимодействии.
+  sources:
+  - neu
+sources:
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M27; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 7
+sort_order: 10
+aliases: []
+tags:
+- model
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

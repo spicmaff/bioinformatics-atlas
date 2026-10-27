@@ -1,0 +1,44 @@
+---
+id: M05
+slug: phylogeny
+title: Эволюционные деревья
+title_en: Phylogenetic inference
+branch: genome-comparison
+role: core
+status: planned
+question: Как решается задача «Эволюционные деревья»?
+summary: Расстояния либо выравнивание и модель изменений → предполагаемое дерево, ветви и состояния предков.
+feature: В аддитивном примере ближайшая пара листьев не является «вишней». Видим первое объединение UPGMA и поправку
+  NJ; точность исходной матрицы сама по себе не обеспечивает пригодность молекулярных часов.
+prerequisites:
+- ref: F-BIO
+- ref: F-ALGORITHM
+methods:
+- name: 'P: поправки расстояний, ML, bootstrap, укоренение'
+  sources:
+  - p
+  - v2
+- name: 'P/V2: neighbor joining. V2: четыре точки, limb length, AdditivePhylogeny, UPGMA/ультраметричность, discrepancy,
+    Sankoff/Small Parsimony, Large Parsimony и NNI.'
+  sources:
+  - p
+  - v2
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, M05; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: v2
+  work: V2
+  locator: Программа v2, §2, M05; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 3
+sort_order: 50
+aliases: []
+tags:
+- reads
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

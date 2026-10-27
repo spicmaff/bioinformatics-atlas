@@ -1,0 +1,9 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { readRoutes, readModules, readFoundations, resolveRef } from '../lib/content';
+import { withBase } from '../lib/url';
+const entries=[...readModules(),...readFoundations()];
+---
+<StarlightPage frontmatter={{title:'Маршруты чтения',template:'splash',tableOfContents:false}} hasSidebar={false}>
+  <p class="page-lead">Один набор материалов, разный порядок чтения. Маршрут показывает замысел программы; готовность каждого шага обозначена отдельно.</p><div class="reading-routes not-content">{readRoutes().map(r=><section id={r.id}><span class="eyebrow">МАРШРУТ / {r.id==='biologist'?'01':'02'}</span><h2>{r.title}</h2><p>{r.intro}</p><ol>{r.steps.map(id=>{const entry=entries.find(e=>e.data.id===id)!;return <li><a href={withBase(resolveRef(id))}><span>{id}</span><strong>{entry.data.title}</strong><small>{entry.data.status==='published'?(id==='M01'?'Доступна 1 глава':'Доступно'):'В программе'}</small></a></li>;})}</ol></section>)}</div>
+</StarlightPage>

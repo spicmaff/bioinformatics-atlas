@@ -1,0 +1,10 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import Catalog from '../components/Catalog';
+import { readModules, readChapters, resolveRef, moduleOrder } from '../lib/content';
+import { withBase } from '../lib/url';
+const modules=readModules().map(m=>m.data).filter(m=>['planned','published'].includes(m.status)).sort(moduleOrder).map(m=>({...m,href:withBase(resolveRef(m.id)),chapterCount:readChapters().filter(c=>c.data.module===m.id&&c.data.status==='published').length}));
+---
+<StarlightPage frontmatter={{title:'Каталог методов',description:'Восемь веток и 35 утверждённых модулей: вопросы, методы, доступность.',template:'splash',tableOfContents:false}} hasSidebar={false}>
+  <p class="page-lead">Выберите данные или вопрос — и исследуйте, как получается ответ.</p><p class="catalog-note">Доступна одна глава M01. Полная программа: 17 модулей ядра, 13 углублений, 5 смежной ветки. Планируемые темы ведут к программе.</p><Catalog client:load modules={modules}/>
+</StarlightPage>

@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import ModuleOverview from '../components/ModuleOverview.astro';
+import RelatedContent from '../components/RelatedContent.astro';
+import SourceList from '../components/learning/SourceList.astro';
+import { visible, modulePath, chapterPath } from '../lib/content';
+
+export async function getStaticPaths() {
+  const modules = await getCollection('modules');
+  const chapters = await getCollection('chapters');
+  const foundations = await getCollection('foundations');
+  const theory = await getCollection('theory');
+  return [
+    ...modules.filter(e=>visible(e.data.status)).map(entry=>({params:{path:modulePath(entry.data).replace(/\/$/,'')},props:{entry,kind:'module'}})),
+    ...chapters.filter(e=>visible(e.data.status) && modules.some(m=>m.data.id===e.data.module && visible(m.data.status))).map(entry=>({params:{path:chapterPath(entry.data,modules.map(m=>m.data)).replace(/\/$/,'')},props:{entry,kind:'chapter'}})),
+    ...foundations.filter(e=>visible(e.data.status)).map(entry=>({params:{path:`foundations/${entry.data.slug}`},props:{entry,kind:'foundation'}})),
+    ...theory.filter(e=>visible(e.data.status)).map(entry=>({params:{path:`theory/${entry.data.slug}`},props:{entry,kind:'theory'}})),
+  ];
+}
+const { entry,kind }=Astro.props;
+const { Content,headings }=await render(entry);
+const summary='summary' in entry.data ? entry.data.summary : '';
+---
+<StarlightPage frontmatter={{title:entry.data.title,description:summary,editUrl:`https://github.com/spicmaff/bioinformatics-atlas/edit/main/${entry.filePath}`,tableOfContents:{minHeadingLevel:2,maxHeadingLevel:2}}} headings={headings} hasSidebar={true}>
+  {entry.data.status!=='published' && <aside class="draft-banner" data-pagefind-ignore>Черновик · виден только в локальном просмотре с INCLUDE_DRAFTS=1.</aside>}
+  {kind==='module' && entry.collection==='modules' && <ModuleOverview module={entry.data}/>}
+  <div class:list={['sl-markdown-content',kind==='chapter' && 'chapter-body']}><Content/></div>
+  <h2 id="sources">Источники</h2><SourceList sources={entry.data.sources}/>
+  <RelatedContent id={entry.data.id}/>
+</StarlightPage>

@@ -1,0 +1,11 @@
+---
+import { readWorks } from '../../lib/content';
+import type { Source } from '../../lib/schema';
+import { withBase } from '../../lib/url';
+interface Props { sources: Source[]; }
+const works = readWorks();
+---
+<ol class="source-list">{Astro.props.sources.map(source=>{
+  const work = works.find(w=>w.id===source.work)!;
+  return <li id={`source-${source.id}`}><strong>[{source.work}]</strong> {work.url ? <a href={work.url}>{work.title}</a> : work.title}. <span>{source.locator}.</span><small>Глубина: {{ explained:'разобранный механизм', example:'пример', mentioned:'упоминание / программа', external:'внешний первоисточник' }[source.depth]}.</small></li>;
+})}</ol><p class="source-note"><a href={withBase('sources/')}>Библиография и правила воспроизводимости</a></p>

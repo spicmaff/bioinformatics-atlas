@@ -1,0 +1,42 @@
+---
+id: M08
+slug: variant-evidence
+title: Варианты генома и их свидетельства
+title_en: Variant evidence
+branch: reads-genomes
+role: advanced
+status: planned
+question: Как решается задача «Варианты генома и их свидетельства»?
+summary: Чтения/покрытие, референс и модель ошибок → кандидаты SNV/инделов и крупных изменений; в малой модели —
+  вероятности генотипов.
+feature: 'Добавляем систематически ошибочные чтения: уверенность неверной модели растёт с глубиной. Затем инвертируем
+  участок без смены числа копий: depth сохраняется, ориентации пар меняются. Видны разные источники свидетельств.'
+prerequisites:
+- ref: M01
+- ref: M13
+- ref: M19
+methods:
+- name: 'P: genotype likelihoods, глубина/баланс аллелей, неоднозначность инделов и фильтры'
+  sources:
+  - p
+- name: 'SV-свидетельства: discordant pairs, split reads, depth, local assembly. Сигналы сравниваются, универсальный
+    современный caller не заявляется.'
+  sources:
+  - p
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, M08; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 4
+sort_order: 30
+aliases: []
+tags:
+- reads
+related: []
+planned_chapters:
+- slug: structural-evidence
+  title: K02 — M08, раздел масштаба и свидетельств
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

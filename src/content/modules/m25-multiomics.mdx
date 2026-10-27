@@ -1,0 +1,45 @@
+---
+id: M25
+slug: multiomics
+title: Совместная структура multi-omics
+title_en: Multi-omics integration
+branch: assays-regulation
+role: advanced
+status: planned
+question: Как решается задача «Совместная структура multi-omics»?
+summary: Согласованные по образцам expression/mutation/CNV-матрицы → общие факторы, нагрузки и исследовательские
+  группы.
+feature: 'В проверке умножаем столбец W на 10 и делим строку H на 10: WH не меняется, а argmax-кластер меняется.
+  Показываем факторы и реконструкцию: для свободно масштабируемого NMF нужна согласованная нормировка перед таким
+  присвоением меток.'
+prerequisites:
+- ref: M20
+- ref: M19
+methods:
+- name: 'CGR: block scaling/MFA, joint NMF, разделение положительных/отрицательных каналов'
+  sources:
+  - cgr
+- name: shared latent model iCluster, lasso/EM-outline
+  sources:
+  - cgr
+- name: iCluster+ с разными распределениями, MCMC обзорно
+  sources:
+  - cgr
+- name: кластеризация и обогащение нагрузок.
+  sources:
+  - cgr
+sources:
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M25; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 5
+sort_order: 30
+aliases: []
+tags:
+- matrix
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

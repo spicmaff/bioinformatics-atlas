@@ -1,0 +1,11 @@
+---
+import Search from '@astrojs/starlight/components/Search.astro';
+import { withBase } from '../lib/url';
+const links = [['catalog/','Каталог'],['routes/','Маршруты'],['foundations/','Основы'],['sources/','Источники']];
+---
+<div class="atlas-header">
+  <a class="atlas-brand" href={withBase()} aria-label="Биоинформатика: методы и алгоритмы — главная"><span class="brand-symbol" aria-hidden="true">↗</span><span>БИО<span class="brand-divider">/</span>АТЛАС<small>методы и алгоритмы</small></span></a>
+  <nav class="top-nav" aria-label="Основные разделы">{links.map(([path,title])=><a href={withBase(path)} aria-current={Astro.url.pathname === withBase(path) ? 'page' : undefined}>{title}</a>)}</nav>
+  <details class="mobile-top-nav"><summary>Разделы</summary><nav aria-label="Основные разделы на мобильном">{links.map(([path,title])=><a href={withBase(path)}>{title}</a>)}</nav></details>
+  <div class="atlas-search"><Search /></div>
+</div>

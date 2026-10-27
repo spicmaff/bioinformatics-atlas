@@ -1,0 +1,50 @@
+---
+id: M09
+slug: differential-expression
+title: Дифференциальная экспрессия
+title_en: Differential expression
+branch: assays-regulation
+role: core
+status: planned
+question: Как решается задача «Дифференциальная экспрессия»?
+summary: Счётчики по генам, независимые образцы и дизайн → изменения экспрессии, их неопределённость и скорректированные
+  проверки.
+feature: В проверенном примере повышаем один ген с 100 до 1000 чтений, остальные оставляем по 100. Их CPM падает
+  в 3,25 раза, хотя исходные значения прежние; медианные отношения сохраняют их уровень. Видим знаменатель и size
+  factors.
+prerequisites:
+- ref: M19
+- ref: F-DATA
+methods:
+- name: 'P: микрочипы/линейные модели, биологическая вариабельность. P/CGR: NB и FDR. CGR: назначение чтений, CPM/RPKM/TPM,
+    median-of-ratios'
+  sources:
+  - p
+  - cgr
+- name: NB-GLM, shrinkage дисперсий, Wald/contrasts, фильтрация, MA/PCA/rlog
+  sources:
+  - p
+  - cgr
+- name: batch-ковариаты и RUVg/RUVs.
+  sources:
+  - p
+  - cgr
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, M09; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M09; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 2
+sort_order: 30
+aliases: []
+tags:
+- matrix
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

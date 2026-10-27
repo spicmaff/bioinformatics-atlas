@@ -1,0 +1,58 @@
+---
+id: M01
+slug: pairwise-alignment
+title: Парное выравнивание
+title_en: Pairwise alignment
+branch: sequences
+role: core
+status: published
+question: Как задать область сопоставления и восстановить лучший путь?
+summary: Две последовательности и система оценок → оптимальное сопоставление целых строк, участков или концов при
+  заданных границах.
+feature: Переключаем local/fitting при неизменных строках; видим матрицу и traceback. Local может отбросить часть
+  короткой строки, fitting должен сопоставить её целиком.
+prerequisites:
+- ref: F-BIO
+- ref: F-DATA
+- ref: F-ALGORITHM
+methods:
+- name: 'P/V1: Needleman–Wunsch, Smith–Waterman, PAM'
+  sources:
+  - p
+  - v1
+- name: 'P: BLOSUM. V1: ДП на DAG, LCS, edit distance, fitting/overlap, traceback и ничьи'
+  sources:
+  - p
+  - v1
+- name: аффинные штрафы, три состояния, middle edge и линейная память.
+  sources:
+  - p
+  - v1
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, M01; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: v1
+  work: V1
+  locator: Программа v2, §2, M01; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 1
+sort_order: 20
+aliases:
+- Попарное выравнивание
+tags:
+- dna
+related: []
+planned_chapters:
+- slug: smith-waterman
+  title: Локальное выравнивание Smith–Waterman
+- slug: boundaries
+  title: 'Fitting и overlap: граничные условия'
+- slug: affine-gaps
+  title: Аффинные штрафы и три состояния
+- slug: linear-memory
+  title: Линейная память и middle edge
+---
+
+Здесь будут постепенно появляться самостоятельные главы модуля.

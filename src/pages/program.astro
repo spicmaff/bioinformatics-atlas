@@ -1,0 +1,13 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { readModules, readDecisions, moduleOrder, resolveRef } from '../lib/content';
+import { branches } from '../data/branches';
+import { withBase } from '../lib/url';
+const modules=readModules().map(m=>m.data).filter(m=>['planned','published'].includes(m.status)).sort(moduleOrder);
+const roles={core:'Ядро',advanced:'Углубление',adjacent:'Смежная ветка'};
+---
+<StarlightPage frontmatter={{title:'Программа и готовность',template:'splash',tableOfContents:false}} hasSidebar={false}>
+  <p class="page-lead">35 утверждённых модулей и 4 кандидата. Все 43 исторических ID сохранены.</p><p>Первый выпуск: <strong>M13 → M01 → M06 → M19 → M20 → M17</strong>. Сейчас доступна одна глава M01; первый выпуск целиком ещё не завершён. Следующие свободные номера: M36 и K09.</p>
+  <div class="program-branches not-content">{branches.map(b=><section id={b.id}><span class="eyebrow">ВЕТКА {String(b.order).padStart(2,'0')}</span><h2>{b.title}</h2><p>{b.description}</p><ol>{modules.filter(m=>m.branch===b.id).map(m=><li id={m.id}><div><span class="program-id">{m.id}</span><strong>{m.title}</strong><span>{roles[m.role]} · этап {m.release_phase}</span></div><p>{m.summary}</p>{m.status==='published'?<a href={withBase(resolveRef(m.id))}>Открыть модуль · доступна 1 глава</a>:<span class="planned-badge">В программе · главы не опубликованы</span>}</li>)}</ol></section>)}</div>
+  <h2 id="editorial-decisions">Исторические ID и решения</h2><p>Кандидаты находятся в редакторском backlog и не входят в каталог утверждённых модулей.</p><div class="table-scroll"><table><thead><tr><th>ID</th><th>Решение и место</th><th>Основание</th></tr></thead><tbody>{readDecisions().map(d=><tr id={d.id}><th>{d.id}</th><td>{{candidate:'Кандидат',merged:'Включён в модуль',reference:'Справочный материал'}[d.decision]}<br/>{d.target?<a href={withBase(resolveRef(d.target,d.section))}>{d.target} · {d.section}</a>:d.title}</td><td>{d.reason}</td></tr>)}</tbody></table></div>
+</StarlightPage>

@@ -1,0 +1,54 @@
+{
+  "name": "bioinformatics-atlas",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": "^24.22.1"
+  },
+  "packageManager": "npm@11.9.0",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "dev:drafts": "INCLUDE_DRAFTS=1 astro dev --host 0.0.0.0",
+    "build": "node --import tsx scripts/validate-content.ts && astro build",
+    "preview": "astro preview --host 0.0.0.0",
+    "check:types": "astro check",
+    "check:content": "node --import tsx scripts/validate-content.ts",
+    "check:links": "node --import tsx scripts/check-links.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "check": "npm run check:content && npm run check:types && npm test && npm run build && npm run check:links",
+    "new:chapter": "node --import tsx scripts/new-content.ts chapter",
+    "new:module": "node --import tsx scripts/new-content.ts module",
+    "precompute:demo": "node --import tsx scripts/precompute/alignment.ts"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "7.3.0",
+    "@astrojs/markdown-satteri": "0.4.0",
+    "@astrojs/mdx": "8.1.1",
+    "@astrojs/react": "7.1.1",
+    "@astrojs/sitemap": "3.7.4",
+    "@astrojs/starlight": "0.42.7",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "@fontsource/ibm-plex-serif": "5.3.0",
+    "astro": "7.4.2",
+    "gray-matter": "4.0.3",
+    "katex": "0.19.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "rehype-katex": "7.0.1",
+    "remark-math": "6.0.0",
+    "yaml": "2.9.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@types/katex": "0.16.8",
+    "@types/node": "26.6.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "parse5": "8.0.1",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
+  }
+}

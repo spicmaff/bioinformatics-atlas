@@ -1,0 +1,51 @@
+---
+id: M07
+slug: mapping-qc
+title: Картирование и QC
+title_en: Read mapping/QC
+branch: reads-genomes
+role: core
+status: planned
+question: Как решается задача «Картирование и QC»?
+summary: Чтения с качествами и референс → отфильтрованные данные, адреса, выравнивания и неопределённость размещения.
+feature: 'Меняем тип эксперимента при одинаковом QC-графике: C→T-сдвиг ожидаем для бисульфитных данных, а многочисленные
+  одинаковые RNA-чтения могут отражать высокую экспрессию. Универсальный порог способен удалить сигнал.'
+prerequisites:
+- ref: M01
+- ref: M13
+methods:
+- name: 'P: hash/BWT, seed-and-extend, пары, Phred/MAPQ. V2: d+1 затравок для d замен, проверка кандидатов, backward
+    search'
+  sources:
+  - p
+  - v2
+  - cgr
+- name: 'индекс — M18. CGR: Q=−10 log₁₀p, QC по циклам/составу/дубликатам/адаптерам, trimming/filtering, потоковая
+    обработка, практический mapping.'
+  sources:
+  - p
+  - v2
+  - cgr
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, M07; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: v2
+  work: V2
+  locator: Программа v2, §2, M07; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M07; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 2
+sort_order: 10
+aliases: []
+tags:
+- reads
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

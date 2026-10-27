@@ -1,0 +1,52 @@
+---
+id: M04
+slug: profiles-hmm
+title: Профили и скрытые состояния
+title_en: Profiles/HMM
+branch: sequences
+role: core
+status: planned
+question: Как решается задача «Профили и скрытые состояния»?
+summary: Последовательность и модель → score профиля, вероятность наблюдений, скрытый путь либо вероятности состояний;
+  отдельно — обучение параметров.
+feature: В сохранённом примере V2 наиболее вероятное состояние каждой позиции — A, но A→A запрещён. Рядом показываем
+  маргинальные вероятности и допустимый Viterbi-путь.
+prerequisites:
+- ref: M19
+- ref: M01
+methods:
+- name: 'P: PSSM, PSI-BLAST, profile HMM. V1: фон, псевдосчётчики, энтропия. V2: Viterbi, Forward, forward-backward,
+    match/insert/delete, оценивание по пути, Viterbi learning, Baum–Welch. CGR: PPM→PWM log-odds, information-content
+    logo, порог сканирования.'
+  sources:
+  - p
+  - v1
+  - v2
+  - cgr
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, M04; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: v1
+  work: V1
+  locator: Программа v2, §2, M04; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: v2
+  work: V2
+  locator: Программа v2, §2, M04; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M04; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 3
+sort_order: 30
+aliases: []
+tags:
+- dna
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

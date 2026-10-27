@@ -1,0 +1,19 @@
+---
+import { readChapters, chapterPath, resolveRef, visible } from '../lib/content';
+import type { Module } from '../lib/schema';
+import { withBase } from '../lib/url';
+interface Props { module: Module; }
+const { module: m } = Astro.props;
+const chapters=readChapters().filter(c=>c.data.module===m.id && visible(c.data.status)).map(c=>c.data).sort((a,b)=>a.order-b.order);
+const roles={core:'Ядро',advanced:'Углубление',adjacent:'Смежная ветка'};
+---
+<div class="module-overview not-content">
+  <div class="module-meta"><span>{m.id}</span><span>{roles[m.role]}</span><span>{chapters.filter(c=>c.status==='published').length} опубликованная глава · модуль пополняется</span></div>
+  <p class="english-subtitle">{m.title_en}</p><p class="module-question">{m.question}</p><p class="lead">{m.summary}</p>
+  <div class="module-callout"><strong>Что исследуем</strong><p>{m.feature}</p><small>Каталог описывает весь модуль. В доступной главе реализовано глобальное выравнивание с линейным штрафом.</small></div>
+  <h2 id="chapters">Главы модуля</h2>
+  <div class="chapter-list">{chapters.map((c,i)=><a href={withBase(chapterPath(c,[m]))}><span class="chapter-number">{String(i+1).padStart(2,'0')}</span><span><strong>{c.title}</strong><small>{c.summary}</small></span><span class="availability">{c.status==='published' ? 'Доступна' : 'Черновик'}</span></a>)}</div>
+  <h3>Запланированные продолжения</h3><ul class="planned-list">{m.planned_chapters.filter(c=>!chapters.some(ch=>ch.slug===c.slug)).map(c=><li id={c.slug}><span>{c.title}</span><span class="planned-badge">В программе</span></li>)}</ul>
+  <h2 id="prerequisites">Необходимые знания</h2><ul>{m.prerequisites.map(r=><li><a href={withBase(resolveRef(r.ref,r.section))}>{r.ref}</a>{r.note && ` · ${r.note}`}</li>)}</ul>
+  <p><a href={withBase('theory/dynamic-programming/')}>Общая теория: состояния, переходы и оптимальная подструктура</a></p>
+</div>

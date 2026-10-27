@@ -1,0 +1,44 @@
+---
+id: M06
+slug: genome-assembly
+title: Сборка генома
+title_en: Genome assembly
+branch: reads-genomes
+role: core
+status: planned
+question: Как решается задача «Сборка генома»?
+summary: Чтения без референса → контиги и возможные связи; точный учебный вход — полная k-мерная композиция с кратностями.
+feature: Линейные строки AAGAA и AGAAA имеют одинаковые кратности 2-меров. Обе дают один контиг длины 5 и одинаковый
+  N50. Выбираем обход и видим, почему точный обход и высокий N50 не удостоверяют исходную строку. Собственный контроль
+  проверен на этапе 6.
+prerequisites:
+- ref: M13
+- ref: F-ALGORITHM
+methods:
+- name: 'P: OLC, покрытие, N50. V1: overlap/Hamiltonian и de Bruijn/Eulerian graphs'
+  sources:
+  - p
+  - v1
+- name: баланс/связность, парные ограничения, неветвящиеся пути/циклы, ошибки, пузыри и кратности.
+  sources:
+  - p
+  - v1
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, M06; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: v1
+  work: V1
+  locator: Программа v2, §2, M06; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 1
+sort_order: 30
+aliases: []
+tags:
+- reads
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

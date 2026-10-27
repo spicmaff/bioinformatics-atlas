@@ -1,0 +1,8 @@
+---
+import { readModules, readFoundations, readTheory, resolveRef } from '../lib/content';
+import { withBase } from '../lib/url';
+interface Props { id: string; related?: {ref:string;note?:string}[]; }
+const all=[...readModules(),...readFoundations(),...readTheory()];
+const refs=all.filter(e=>e.data.prerequisites.some(r=>r.ref===Astro.props.id));
+---
+{refs.length>0 && <aside class="related-content not-content"><h2 id="used-by">Используется в модулях</h2><ul>{refs.map(e=><li><a href={withBase(resolveRef(e.data.id))}>{e.data.id} · {e.data.title}</a>{e.data.status==='planned' && ' · В программе'}</li>)}</ul></aside>}

@@ -1,0 +1,47 @@
+---
+id: M35
+slug: surrogate-optimization
+title: Поиск через модель среды
+title_en: Surrogate-assisted optimization/World Models
+branch: optimization
+role: advanced
+status: planned
+question: Как решается задача «Поиск через модель среды»?
+summary: Дорогие наблюдения или симулятор, параметры решения и модель отклика → кандидаты, проверяемые затем исходной
+  системой.
+feature: В книге агент находит лазейку в слишком детерминированном «сне». В своём проверенном примере модель почти
+  точна на обучающем диапазоне, но её оптимум вне него плох в исходной функции. Меняем область поиска/температуру;
+  показываем predicted и проверенный результат раздельно.
+prerequisites:
+- ref: M21
+- ref: M26
+- ref: M19
+methods:
+- name: 'NEU: predictor–prescriptor/ESP, обновление surrogate по новым оценкам'
+  sources:
+  - neu
+- name: surrogate NAS
+  sources:
+  - neu
+- name: VAE-vision + predictive MDN-RNN + эволюционируемый controller
+  sources:
+  - neu
+- name: rollouts в learned world model и temperature. GP/RIO — кейс оценки остаточной неопределённости, не гарантия
+    переноса.
+  sources:
+  - neu
+sources:
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M35; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 6
+sort_order: 40
+aliases: []
+tags:
+- model
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

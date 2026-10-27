@@ -1,0 +1,42 @@
+---
+id: M15
+slug: peptide-sequencing
+title: Восстановление пептида
+title_en: De novo peptide sequencing
+branch: spectra-proteins
+role: advanced
+status: planned
+question: Как решается задача «Восстановление пептида»?
+summary: Спектр/спектральный вектор, масса и алфавит → кандидаты пептида без белковой базы.
+feature: В сохранённом примере V2 только 8 из 32 путей объясняют нужный спектр. Выбираем путь и видим лишние/недостающие
+  массы его теоретического спектра.
+prerequisites:
+- ref: K04
+- ref: M01
+- ref: M19
+methods:
+- name: 'V1: линейные/циклические спектры-мультимножества, перебор, точный branch-and-bound идеальной задачи, leaderboard-эвристика,
+    свёртка. V2: спектральный DAG, проверка полного спектра, vectors/dot product, максимальный путь, log-likelihood
+    ratios.'
+  sources:
+  - v1
+  - v2
+sources:
+- id: v1
+  work: V1
+  locator: Программа v2, §2, M15; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: v2
+  work: V2
+  locator: Программа v2, §2, M15; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 4
+sort_order: 20
+aliases: []
+tags:
+- spectra
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

@@ -1,0 +1,54 @@
+---
+id: M29
+slug: quality-diversity
+title: Поиск разнообразных хороших решений
+title_en: Novelty search/Quality Diversity
+branch: optimization
+role: advanced
+status: planned
+question: Как решается задача «Поиск разнообразных хороших решений»?
+summary: Кандидаты, описание их поведения и, для QD, качество → архив разных поведений с лучшими найденными представителями.
+feature: 'Меняем descriptor «конечная точка» на «траектория»: одинаково заканчивающие маршруты перестают быть одинаковыми.
+  Видим соседей, novelty и заполнение архива. Найденная новизна зависит от представления; это не вероятность успеха
+  и не автоматическое открытие биологического разнообразия. Проект.'
+prerequisites:
+- ref: M26
+- ref: M17
+- ref: M19
+methods:
+- name: 'NEU: behavioral descriptors и kNN-novelty'
+  sources:
+  - neu
+- name: population/archive
+  sources:
+  - neu
+- name: NSLC — локальная конкуренция
+  sources:
+  - neu
+- name: MAP-Elites — ячейка по descriptor, замена по quality
+  sources:
+  - neu
+- name: coverage/QD-score
+  sources:
+  - neu
+- name: CVT-MAP-Elites, AURORA
+  sources:
+  - neu
+- name: CMA-ME и другие расширения — обзорно.
+  sources:
+  - neu
+sources:
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M29; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 6
+sort_order: 30
+aliases: []
+tags:
+- model
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

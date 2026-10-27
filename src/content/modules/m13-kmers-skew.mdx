@@ -1,0 +1,35 @@
+---
+id: M13
+slug: kmers-skew
+title: Короткие паттерны и состав
+title_en: k-mers/skew
+branch: sequences
+role: core
+status: planned
+question: Как решается задача «Короткие паттерны и состав»?
+summary: Последовательность, k, окно и допуск замен → частоты, позиции, сгущения и накопленная G−C.
+feature: Для AAAAA при k=3 считаются три перекрывающихся AAA. Меняем окно и допуск замен; видим каждое учтённое
+  вхождение. Прежний книжный контрпример отсутствующего точного, но частого приблизительного паттерна сохранён ниже.
+prerequisites:
+- ref: F-DATA
+- ref: F-ALGORITHM
+methods:
+- name: 'V1: перекрывающиеся counts, reverse complement, base-4/массив, сортировка, sliding clumps, Хэмминг/d-окрестности,
+    approximate counts, skew, случайный фон.'
+  sources:
+  - v1
+sources:
+- id: v1
+  work: V1
+  locator: Программа v2, §2, M13; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 1
+sort_order: 10
+aliases: []
+tags:
+- dna
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

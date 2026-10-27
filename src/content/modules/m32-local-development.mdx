@@ -1,0 +1,46 @@
+---
+id: M32
+slug: local-development
+title: Глобальная форма из локальных правил
+title_en: Neural cellular automata/development
+branch: neuro-alife
+role: adjacent
+status: planned
+question: Как решается задача «Глобальная форма из локальных правил»?
+summary: Начальное состояние клеток/графа и общее локальное правило → развивающийся узор, форма либо сеть.
+feature: 'Повреждаем выросший узор и продолжаем те же локальные обновления. Сравниваем правила, обученные только
+  росту и также восстановлению: рост из семени сам по себе не обеспечивает регенерации. Показываем состояния клеток
+  и локальное поле; предобученные правила — расчёт вывода, история обучения — предрасчёт. Проект.'
+prerequisites:
+- ref: M26
+methods:
+- name: 'NEU: CA/NCA, local perception, shared neural update, асинхронность'
+  sources:
+  - neu
+- name: эволюция правила по конечному поведению
+  sources:
+  - neu
+- name: HyperNCA и graph NDP
+  sources:
+  - neu
+- name: QD для генераторов
+  sources:
+  - neu
+- name: отдельное обучение устойчивости градиентным методом. Реакция–диффузия/GRN — модельные предпосылки.
+  sources:
+  - neu
+sources:
+- id: neu
+  work: NEU
+  locator: Программа v2, §2, M32; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 7
+sort_order: 30
+aliases: []
+tags:
+- model
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

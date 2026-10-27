@@ -1,0 +1,40 @@
+---
+id: M02
+slug: blast
+title: BLAST и значимость сходства
+title_en: Similarity search
+branch: sequences
+role: core
+status: planned
+question: Как решается задача «BLAST и значимость сходства»?
+summary: Последовательность-запрос и база → похожие участки, score и ожидаемое число случайных совпадений такой
+  силы.
+feature: 'Увеличиваем базу при фиксированном выравнивании и статистической модели: score прежний, E-value растёт.
+  Сила сопоставления и неожиданность находки — разные величины.'
+prerequisites:
+- ref: M01
+methods:
+- name: 'P: seed-and-extend, маскирование, эвристическое отсечение, raw/bit score, E-value. V2: score-окрестности
+    слов по матрице замен.'
+  sources:
+  - p
+  - v2
+sources:
+- id: p
+  work: P
+  locator: Программа v2, §2, M02; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: v2
+  work: V2
+  locator: Программа v2, §2, M02; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 3
+sort_order: 10
+aliases: []
+tags:
+- dna
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

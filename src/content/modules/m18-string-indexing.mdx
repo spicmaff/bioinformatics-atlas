@@ -1,0 +1,37 @@
+---
+id: M18
+slug: string-indexing
+title: Поисковые индексы строк
+title_en: String indexing
+branch: sequences
+role: advanced
+status: planned
+question: Как решается задача «Поисковые индексы строк»?
+summary: Текст и многократные запросы → число/позиции вхождений после предварительного построения индекса.
+feature: 'Для `banana$ → annb$aa` запрос `ana` сужает интервал до позиций 1 и 3 с нуля. Меняем checkpoints/выборку
+  SA: ответ прежний, память и число дополнительных шагов меняются.'
+prerequisites:
+- ref: M13
+- ref: F-ALGORITHM
+methods:
+- name: 'V2: trie, suffix trie/tree/array, BWT/inverse/LF, backward search, rank/checkpoints, partial SA, mismatches'
+  sources:
+  - v2
+- name: Aho–Corasick, colouring, LCP/SA→tree.
+  sources:
+  - v2
+sources:
+- id: v2
+  work: V2
+  locator: Программа v2, §2, M18; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 3
+sort_order: 60
+aliases: []
+tags:
+- dna
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

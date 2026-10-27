@@ -1,0 +1,46 @@
+---
+id: M14
+slug: motif-discovery
+title: Поиск неизвестных мотивов
+title_en: De novo motif discovery
+branch: sequences
+role: core
+status: planned
+question: Как решается задача «Поиск неизвестных мотивов»?
+summary: Набор последовательностей с неизвестными положениями сигнала → кандидаты окон, консенсус и профиль.
+feature: Объединяем перекрывающиеся пики перед извлечением последовательностей. Один повторно включённый участок
+  перестаёт выглядеть как несколько независимых свидетельств мотива. Сравниваем несколько запусков при одинаковом
+  бюджете.
+prerequisites:
+- ref: M13
+- ref: M04
+- ref: M19
+methods:
+- name: 'V1: MotifEnumeration, median string, score/энтропия, greedy с псевдосчётчиками, randomized search, Gibbs/restarts.
+    CGR: применение к ChIP-пикам, устранение перекрывающихся входов, rGADEM и сравнение PWM'
+  sources:
+  - v1
+  - cgr
+- name: внутренний solver не разобран.
+  sources:
+  - v1
+  - cgr
+sources:
+- id: v1
+  work: V1
+  locator: Программа v2, §2, M14; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+- id: cgr
+  work: CGR
+  locator: Программа v2, §2, M14; первичный локатор требует сверки перед написанием главы
+  depth: mentioned
+release_phase: 3
+sort_order: 40
+aliases: []
+tags:
+- dna
+related: []
+planned_chapters: []
+---
+
+Редакторский конспект. Учебные главы ещё не опубликованы.

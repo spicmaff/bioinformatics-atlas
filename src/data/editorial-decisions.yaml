@@ -1,0 +1,49 @@
+- id: M33
+  decision: candidate
+  title: Отложенная тема AutoML/NAS
+  reason: Был основным рабочего набора. Самостоятельный вопрос сохранён, но полный поиск архитектур/обучающих
+    систем расширяет сайт до общего AI и дорогого benchmarking. В M21 остаётся базовая схема внешнего подбора;
+    детали NAS отложены, а не слиты с NEAT.
+- id: K01
+  decision: candidate
+  title: РНК и структуры, вне утверждённого каталога
+  reason: Вопрос самостоятелен, но для полноценного алгоритмического урока нужны специальные источники по рекурсиям
+    MFE/partition и моделям энергии.
+- id: K02
+  decision: merged
+  title: M08, раздел масштаба и свидетельств
+  reason: 'Отдельная страница не нужна: discordant pairs/split reads/depth/local assembly сопоставляются со
+    свидетельствами малых вариантов; универсальный SV-caller не заявляется.'
+  target: M08
+  section: structural-evidence
+- id: K03
+  decision: candidate
+  title: Белковые структуры, вне утверждённого каталога
+  reason: RMSD/coverage и шаблонное моделирование полезны, но одной основы P недостаточно для цельного современного
+    урока предсказания структуры.
+- id: K05
+  decision: merged
+  title: M28; ссылки на M27/M34
+  reason: Human selection/Picbreeder — режим M28; rtNEAT/NERO остаётся примером M27, советы/KBANN — M34. Нагрузку
+    человека и историю выбора сохраняем.
+  target: M28
+  section: human-selection
+- id: K06
+  decision: candidate
+  title: Open-ended evolution, вне утверждённого каталога
+  reason: Новые задачи и перенос — самостоятельный вопрос, не частный случай фиксированного турнира M31; полнота
+    демо и валидная оценка прогресса ещё требуют работы.
+- id: K07
+  decision: merged
+  title: M26; ссылки на M29/M33
+  reason: GP/LLM предлагают вариации, внешний evaluator определяет принятие. ELM/LMX/EvoLLM, prompt evolution
+    и AlphaEvolve остаются углублением операторов/архива, без отдельной GenAI-ветки.
+  target: M26
+  section: generative-variation
+- id: K08
+  decision: reference
+  title: F-БИО и кейсы M26/M27/M28/M30/M31/M32/M34
+  reason: Симуляция, подгонка к данным и историческое объяснение требуют общей методологической справки; отдельная
+    страница не нужна для каталога вычислительных задач.
+  target: F-BIO
+  section: simulation-and-evidence

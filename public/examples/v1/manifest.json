@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "artifact": "alignment.json",
+  "sha256": "633a1c1ac7fcf6781cc7eb3f8808347e03a1d2ddfaed708b8644d0f6dc19f407",
+  "producer": "scripts/precompute/alignment.ts",
+  "runtime": "Node.js 24.22.1; package-lock.json",
+  "parameters": {
+    "a": "A",
+    "b": "AA",
+    "match": 2,
+    "mismatch": -1,
+    "gap": -2
+  }
+}
