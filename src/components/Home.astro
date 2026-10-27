@@ -1,6 +1,7 @@
 ---
 import { withBase } from '../lib/url';
 import PixelWord from './PixelWord.astro';
+import AlignmentScene from './AlignmentScene';
 ---
 <section class="portal-home not-content" aria-labelledby="_top">
   <div class="portal-copy">
@@ -10,11 +11,8 @@ import PixelWord from './PixelWord.astro';
     <a class="portal-enter" href={withBase('catalog/')}><span class="pixel-cursor" aria-hidden="true">▸</span> Выбрать модуль <span aria-hidden="true">↗</span></a>
     <a class="portal-about" href={withBase('program/')}>Что это за место</a>
   </div>
-  <div class="portal-world" aria-hidden="true">
-    <span class="world-coordinate">ПОЛЕВЫЕ ЗАМЕТКИ / БИОИНФОРМАТИКА</span>
-    <img class="cabinet-art" src={withBase('images/night-cabinet.webp')} alt="" width="960" height="640" fetchpriority="high" />
-    <span class="world-dust dust-one"></span><span class="world-dust dust-two"></span><span class="world-dust dust-three"></span>
-    <span class="world-caption"><i></i> здесь ещё горит свет</span>
+  <div class="portal-world portal-science">
+    <AlignmentScene client:load href={withBase('modules/pairwise-alignment/needleman-wunsch/')} />
   </div>
   <div class="portal-threshold"><span>НАБЛЮДАТЬ. СПРАШИВАТЬ. ПРОВЕРЯТЬ.</span><span>Модуль <b>→</b> Тема <b>→</b> Алгоритмы</span></div>
 </section>

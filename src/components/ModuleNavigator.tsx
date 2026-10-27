@@ -1,7 +1,7 @@
 import {useEffect,useRef,useState,type KeyboardEvent} from 'react';
 import {branches} from '../data/branches';
 import type {Module} from '../lib/schema';
-import PixelSpecimen from './PixelSpecimen';
+import AlignmentScene from './AlignmentScene';
 type Card=Module&{href:string;chapterCount:number};
 const roles={core:'Основной модуль',advanced:'Углубление',adjacent:'Смежная область'};
 const shortNames=['Последовательности','Геномы и чтения','Сравнение геномов','Измерения','Спектры и белки','Данные и вывод','Оптимизация','Искусственная жизнь'];
@@ -22,9 +22,9 @@ export default function ModuleNavigator({modules}:{modules:Card[]}){
   <div className="navigator-cabinet">
    <nav className="branch-rail" aria-label="Тематические направления">{branches.map((b,i)=><button key={b.id} type="button" aria-pressed={b.id===current.branch} onClick={()=>changeBranch(b.id)}><span className="rail-number">{String(i+1).padStart(2,'0')}</span><span>{shortNames[i]}</span><i aria-hidden="true">↗</i></button>)}</nav>
    <div className="module-chamber">{query&&!results.length?<div className="navigator-empty" role="status"><p className="field-label">СЛЕД ПОТЕРЯЛСЯ</p><h2>Здесь пока тихо.</h2><p>Модуль с таким названием или ID не найден.</p><button type="button" onClick={()=>setQuery('')}>Вернуться к модулям</button></div>:<>
-    <div className="module-focus" id="module-panel" role="tabpanel" aria-labelledby={`module-tab-${current.id}`} key={current.id}>
+    <div className={`module-focus ${current.id==='M01'?'module-focus-scientific':'module-focus-text'}`} id="module-panel" role="tabpanel" aria-labelledby={`module-tab-${current.id}`} key={current.id}>
      <div className="module-focus-copy"><div className="module-specimen-meta"><span>{current.id}</span><span>{roles[current.role]}</span></div><p className="field-label module-field">{branches.find(b=>b.id===current.branch)?.title}</p><h2>{current.title}</h2><p className="module-focus-question">{current.question}</p><p className="module-focus-summary">{current.summary}</p><div className="module-launch"><a className="portal-enter" href={current.href}>{current.status==='published'?'Выбрать тему':'Посмотреть программу'}<span aria-hidden="true">↗</span></a><span className={`module-state ${current.status==='published'?'is-ready':''}`}><i aria-hidden="true"></i>{current.status==='published'?'Есть доступный алгоритм':'Материалы готовятся'}</span></div></div>
-     <div className="module-specimen"><span className="specimen-label">ОБЪЕКТ НАБЛЮДЕНИЯ / {current.id}</span><PixelSpecimen branch={current.branch}/><span className="specimen-foot">каждый метод начинается с вопроса</span></div>
+     {current.id==='M01'&&<div className="module-science"><AlignmentScene compact/></div>}
     </div>
     <div className="module-selector"><div className="module-selector-caption"><span>{query?'РЕЗУЛЬТАТЫ ПОИСКА':'МОДУЛИ ЭТОГО НАПРАВЛЕНИЯ'}</span><div><button type="button" onClick={()=>step(-1)} aria-label="Предыдущий модуль">←</button><button type="button" onClick={()=>step(1)} aria-label="Следующий модуль">→</button></div></div><div className="module-tabs" role="tablist" aria-label="Модули направления" ref={tabs}>{shelf.map((m,i)=><button role="tab" type="button" id={`module-tab-${m.id}`} key={m.id} aria-selected={m.id===current.id} aria-controls="module-panel" tabIndex={m.id===current.id?0:-1} onKeyDown={e=>key(e,i)} onClick={()=>choose(m.id)}><span>{m.id}</span><strong>{m.title}</strong><i className={m.status==='published'?'ready-dot':''} aria-hidden="true"></i></button>)}</div></div>
    </>}</div>

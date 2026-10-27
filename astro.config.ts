@@ -33,7 +33,7 @@ export default defineConfig({
     starlight({
       title: 'Биоинформатика: методы и алгоритмы', description: 'Русскоязычный интерактивный атлас: от биологического вопроса к наблюдаемому вычислению.',
       defaultLocale: 'root', locales: { root: { label: 'Русский', lang: 'ru' } },
-      sidebar, customCss: ['./src/styles/atlas.css','./src/styles/night.css'],
+      sidebar, customCss: ['./src/styles/atlas.css','./src/styles/night.css','./src/styles/science.css'],
       components: { Header: './src/components/Header.astro', Footer: './src/components/Footer.astro', PageTitle: './src/components/PageTitle.astro' },
       social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/spicmaff/bioinformatics-atlas' }],
       expressiveCode: { themes: ['github-dark'], styleOverrides: { borderRadius: '0' } },
