@@ -4,7 +4,7 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import { parse } from 'yaml';
 import { moduleSchema, chapterSchema, referenceSchema } from './schema';
-import type { Module, Chapter, Reference } from './schema';
+import type { Module, Chapter, Reference, Topic } from './schema';
 
 function files(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
@@ -32,6 +32,7 @@ export const readRoutes = () => readYaml<ReadingRoute[]>('routes');
 export const includeDrafts = process.env.INCLUDE_DRAFTS === '1';
 export const visible = (status: string) => status === 'published' || (includeDrafts && ['draft', 'review'].includes(status));
 export function modulePath(m: Pick<Module, 'slug'>) { return `modules/${m.slug}/`; }
+export function topicPath(m: Pick<Module, 'slug'>, t: Pick<Topic, 'slug'>) { return `${modulePath(m)}topics/${t.slug}/`; }
 export function chapterPath(c: Chapter, modules: Module[]) {
   const m = modules.find(m => m.id === c.module);
   if (!m) throw new Error(`Unknown module ${c.module}`);

@@ -1,10 +1,11 @@
 ---
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
-import Catalog from '../components/Catalog';
-import { readModules, readChapters, readDecisions, resolveRef, moduleOrder } from '../lib/content';
-import { withBase } from '../lib/url';
-const modules=readModules().map(m=>m.data).filter(m=>['planned','published'].includes(m.status)).sort(moduleOrder).map(m=>({...m,aliases:[...m.aliases,...readDecisions().filter(d=>d.target===m.id).map(d=>d.id)],href:withBase(resolveRef(m.id)),chapterCount:readChapters().filter(c=>c.data.module===m.id&&c.data.status==='published').length}));
+import ModuleNavigator from '../components/ModuleNavigator';
+import {readModules,readChapters,readDecisions,resolveRef,moduleOrder} from '../lib/content';
+import {withBase} from '../lib/url';
+const decisions=readDecisions(),chapters=readChapters();
+const modules=readModules().map(m=>m.data).filter(m=>['planned','published'].includes(m.status)).sort(moduleOrder).map(m=>({...m,aliases:[...m.aliases,...decisions.filter(d=>d.target===m.id).map(d=>d.id)],href:withBase(resolveRef(m.id)),chapterCount:chapters.filter(c=>c.data.module===m.id&&c.data.status==='published').length}));
 ---
-<StarlightPage frontmatter={{title:'Каталог методов',description:'Восемь веток и 35 утверждённых модулей: вопросы, методы, доступность.',template:'splash',tableOfContents:false}} hasSidebar={false}>
-  <p class="page-lead">Выберите данные или вопрос — и исследуйте, как получается ответ.</p><p class="catalog-note">Доступна одна глава M01. Полная программа: 17 модулей ядра, 13 углублений, 5 смежной ветки. Планируемые темы ведут к программе.</p><Catalog client:load modules={modules}/>
+<StarlightPage frontmatter={{title:'Модули атласа',description:'Выберите направление, модуль, тему и алгоритм.',template:'splash',tableOfContents:false}} hasSidebar={false}>
+ <ModuleNavigator client:load modules={modules}/>
 </StarlightPage>

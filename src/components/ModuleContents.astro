@@ -1,0 +1,20 @@
+---
+import {readChapters,chapterPath,topicPath,visible} from '../lib/content';
+import type {Module} from '../lib/schema';
+import {withBase} from '../lib/url';
+interface Props { module:Module }
+const {module:m}=Astro.props;
+const chapters=readChapters().filter(c=>c.data.module===m.id&&visible(c.data.status)).map(c=>c.data);
+const topics=m.topics.filter(t=>visible(t.status)||t.status==='planned').sort((a,b)=>a.order-b.order);
+---
+<div class="module-contents not-content">
+ <nav class="learning-breadcrumbs" aria-label="Путь по учебнику"><a href={withBase(`catalog/?module=${m.id}`)}>Все модули</a><span aria-hidden="true">/</span><span>{m.id}</span></nav>
+ <p class="module-question">{m.question}</p>
+ <p class="module-intro">{m.summary}</p>
+ <div class="contents-heading"><h2 id="topics">Темы модуля</h2><span>Выберите, с чего начать</span></div>
+ <div class="topic-shelf">{topics.map((t,i)=>{const count=chapters.filter(c=>c.topic===t.id&&c.status==='published').length;return <div class:list={['topic-row',!visible(t.status)&&'topic-planned']}>
+  <span class="topic-number">{String(i+1).padStart(2,'0')}</span><div><h3>{visible(t.status)?<a href={withBase(topicPath(m,t))}>{t.title}<span aria-hidden="true"> ↗</span></a>:t.title}</h3><p>{t.summary}</p></div><span class:list={['topic-status',count>0&&'is-ready']}>{count>0?`${count} алгоритм доступен`:'Готовится'}</span>
+ </div>;})}</div>
+ {!topics.length&&<div class="chapter-list">{chapters.map((c,i)=><a href={withBase(chapterPath(c,[m]))}><span class="chapter-number">{String(i+1).padStart(2,'0')}</span><span><strong>{c.title}</strong><small>{c.summary}</small></span></a>)}</div>}
+ <p class="module-endnote">Каждая тема — отдельная история. Внутри алгоритмы идут от простого случая к более сложным моделям.</p>
+</div>

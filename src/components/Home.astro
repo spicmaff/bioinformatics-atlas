@@ -1,21 +1,20 @@
 ---
-import { readModules } from '../lib/content';
 import { withBase } from '../lib/url';
-import { needlemanWunsch } from '../algorithms/needleman-wunsch';
-const r=needlemanWunsch('ACG','ACG');
-const m=readModules().find(m=>m.data.id==='M01')!.data;
+import PixelWord from './PixelWord.astro';
 ---
-<div class="home not-content">
-  <div class="home-intro"><div><p class="eyebrow">Интерактивный научный атлас</p><p class="home-statement">Понять метод —<br/>значит увидеть,<br/><em>как получается ответ.</em></p><p class="home-description">От последовательностей и чтений до матриц измерений. Меняйте входные данные, следите за вычислением и проверяйте границы вывода.</p><div class="home-actions"><a class="primary-button" href={withBase('modules/pairwise-alignment/needleman-wunsch/')}>Исследовать выравнивание <span aria-hidden="true">↗</span></a><a href={withBase('catalog/')}>Открыть каталог</a></div></div>
-    <a class="home-scene" href={withBase('modules/pairwise-alignment/needleman-wunsch/')} aria-label="Открыть главу: глобальное выравнивание Needleman–Wunsch"><div class="scene-top"><span>M01 / NEEDLEMAN–WUNSCH</span><span>ACG × ACG</span></div><svg viewBox="0 0 310 290" role="img" aria-label="Матрица глобального выравнивания ACG / ACG. Диагональный оптимальный путь, score 6.">
-      {['∅','A','C','G'].map((c,j)=><text x={71+j*60} y="27" text-anchor="middle" class="svg-letter">{c}</text>)}
-      {['∅','A','C','G'].map((c,i)=><text x="18" y={68+i*60} text-anchor="middle" class="svg-letter">{c}</text>)}
-      {r.matrix.map((row,i)=>row.map((value,j)=><g><rect x={44+j*60} y={40+i*60} width="54" height="54" rx="5" class={i===j?'scene-selected':'scene-cell'}/><text x={71+j*60} y={74+i*60} text-anchor="middle">{value}</text></g>))}
-      <path d="M251 247 L191 187 L131 127 L71 67" class="scene-path"/>
-    </svg><div class="scene-bottom"><span>Один шаг — три возможных перехода</span><strong>score {r.score}</strong></div><small>Статический контрольный пример из вычислительной функции. Откройте главу для эксперимента.</small></a>
+<section class="portal-home not-content" aria-labelledby="_top">
+  <div class="portal-copy">
+    <p class="field-label"><span class="pixel-spark" aria-hidden="true"></span> БИОИНФОРМАТИКА / ИНТЕРАКТИВНЫЙ УЧЕБНИК</p>
+    <h1 id="_top">Заглянуть<br/>внутрь<br/><span class="portal-pixel"><span class="sr-only">живого.</span><PixelWord word="ЖИВОГО" /></span></h1>
+    <p class="portal-intro">У каждой закономерности есть история.<br/>У каждого алгоритма — вопрос, с которого всё началось.</p>
+    <a class="portal-enter" href={withBase('catalog/')}><span class="pixel-cursor" aria-hidden="true">▸</span> Выбрать модуль <span aria-hidden="true">↗</span></a>
+    <a class="portal-about" href={withBase('program/')}>Что это за место</a>
   </div>
-  <div class="atlas-facts"><div><strong>35</strong><span>модулей в программе</span></div><div><strong>8</strong><span>тематических веток</span></div><div><strong>1</strong><span>законченная глава</span></div><div><strong>2</strong><span>маршрута чтения</span></div></div>
-  <section class="home-section"><div class="section-heading"><p class="eyebrow">Начать с понятного вопроса</p><h2>Одни методы.<br/>Разные точки входа.</h2></div><div class="entry-grid"><a href={withBase('routes/#biologist')}><span class="entry-number">01 / БИОЛОГУ</span><h3>От измерения к выводу</h3><p>Образец, вариабельность, эффект. Затем — геометрия данных и вычислительные механизмы.</p><span>Маршрут для биолога ↗</span></a><a href={withBase('routes/#ds')}><span class="entry-number">02 / DS И CS</span><h3>От алгоритма к смыслу данных</h3><p>Строки, динамическое программирование, графы. Затем — независимость и дизайн эксперимента.</p><span>Маршрут для DS / CS ↗</span></a></div></section>
-  <section class="home-section"><p class="eyebrow">Доступно сейчас</p><div class="featured-chapter"><div><span class="module-meta">M01 · Ядро · 1 глава</span><h2>{m.title}</h2><p>{m.summary}</p><a href={withBase('modules/pairwise-alignment/')}>Модуль и продолжения ↗</a></div><div><h3>Глобальное выравнивание</h3><p>Вход → оценки → матрица → обратный путь. Пустые строки и равные оптимумы включены.</p><a class="primary-button" href={withBase('modules/pairwise-alignment/needleman-wunsch/')}>Открыть главу</a></div></div></section>
-  <section class="home-note"><strong>Атлас растёт по главам.</strong><p>Первый выпуск программы: M13, M01, M06, M19, M20, M17. Сейчас реализована демонстрационная глава M01; остальные темы отмечены «В программе». Принадлежность к ядру не означает готовность материала.</p><a href={withBase('program/')}>Программа и редакторские решения</a></section>
-</div>
+  <div class="portal-world" aria-hidden="true">
+    <span class="world-coordinate">ПОЛЕВЫЕ ЗАМЕТКИ / БИОИНФОРМАТИКА</span>
+    <img class="cabinet-art" src={withBase('images/night-cabinet.webp')} alt="" width="960" height="640" fetchpriority="high" />
+    <span class="world-dust dust-one"></span><span class="world-dust dust-two"></span><span class="world-dust dust-three"></span>
+    <span class="world-caption"><i></i> здесь ещё горит свет</span>
+  </div>
+  <div class="portal-threshold"><span>НАБЛЮДАТЬ. СПРАШИВАТЬ. ПРОВЕРЯТЬ.</span><span>Модуль <b>→</b> Тема <b>→</b> Алгоритмы</span></div>
+</section>

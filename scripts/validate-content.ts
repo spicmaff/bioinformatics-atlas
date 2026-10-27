@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readModules, readChapters, readFoundations, readTheory, readDecisions, readWorks, readRoutes, modulePath, chapterPath } from '../src/lib/content';
+import { readModules, readChapters, readFoundations, readTheory, readDecisions, readWorks, readRoutes, modulePath, chapterPath, topicPath } from '../src/lib/content';
 import { experimentRegistry } from '../src/experiments/registry';
 import type { Source } from '../src/lib/schema';
 
@@ -7,7 +7,7 @@ export function validateContent() {
   const modules=readModules(), chapters=readChapters(), foundations=readFoundations(), theory=readTheory(), decisions=readDecisions(), works=readWorks();
   const all=[...modules,...chapters,...foundations,...theory];
   const unique=(values:string[],label:string)=>assert.equal(new Set(values).size,values.length,`Duplicate ${label}`);
-  unique([...all.map(e=>e.data.id),...decisions.map(e=>e.id)],'ID');
+  unique([...all.map(e=>e.data.id),...decisions.map(e=>e.id),...modules.flatMap(m=>m.data.topics.map(t=>t.id))],'ID');
   unique(works.map(w=>w.id),'work ID');
   const historical=Array.from({length:35},(_,i)=>`M${String(i+1).padStart(2,'0')}`).concat(Array.from({length:8},(_,i)=>`K${String(i+1).padStart(2,'0')}`));
   for (const id of historical) assert.ok([...modules.map(m=>m.data.id),...decisions.map(d=>d.id)].includes(id),`Lost historical ID ${id}`);
@@ -35,7 +35,7 @@ export function validateContent() {
     unique(sources.map(s=>s.id),`source key in ${id}`);
     sources.forEach(s=>assert.ok(works.some(w=>w.id===s.work),`Unknown work ${s.work} in ${id}`));
   }
-  const paths=modules.map(m=>modulePath(m.data)).concat(chapters.map(c=>chapterPath(c.data,modules.map(m=>m.data))),foundations.map(f=>`foundations/${f.data.slug}/`),theory.map(f=>`theory/${f.data.slug}/`),['','catalog/','routes/','program/','sources/','glossary/','foundations/']);
+  const paths=modules.map(m=>modulePath(m.data)).concat(modules.flatMap(m=>m.data.topics.map(t=>topicPath(m.data,t))),chapters.map(c=>chapterPath(c.data,modules.map(m=>m.data))),foundations.map(f=>`foundations/${f.data.slug}/`),theory.map(f=>`theory/${f.data.slug}/`),['','catalog/','routes/','program/','sources/','glossary/','foundations/']);
   unique(paths.map(p=>p.toLowerCase()),'route');
   for(const entry of all){
     const e=entry.data;checkSources(e.sources,e.id);
@@ -50,6 +50,13 @@ export function validateContent() {
     if(e.status==='published' && !('branch' in e))assert.ok(entry.body.length>350,`Incomplete published body ${e.id}`);
   }
   for(const m of modules){
+    unique(m.data.topics.map(t=>t.slug),`topic slug ${m.data.id}`);
+    for(const t of m.data.topics){
+      assert.ok(t.id.startsWith(m.data.id+'-T'),`Topic ID/module mismatch ${t.id}`);
+      for(const r of t.theory){const id=resolve(r.ref);if(t.status==='published')assert.equal(allIds.get(id)!.data.status,'published',`Unavailable theory ${id}`);}
+      if(t.status==='published')assert.ok(chapters.some(c=>c.data.module===m.data.id&&c.data.topic===t.id&&c.data.status==='published'),`Published topic ${t.id} needs a published chapter`);
+    }
+    for(const p of m.data.planned_chapters)if(p.topic)assert.ok(m.data.topics.some(t=>t.id===p.topic),`Unknown planned topic ${p.topic}`);
     m.data.methods.forEach(method=>method.sources.forEach(s=>assert.ok(m.data.sources.some(x=>x.id===s),`Unknown method source ${s} in ${m.data.id}`)));
     unique(m.data.planned_chapters.map(c=>c.slug),`planned chapter slug ${m.data.id}`);
     if(m.data.status==='published'){
@@ -61,6 +68,8 @@ export function validateContent() {
   for(const c of chapters){
     assert.ok(c.data.id.startsWith(c.data.module+'-C'),`Chapter ID/module mismatch ${c.data.id}`);
     const parent=modules.find(m=>m.data.id===c.data.module);assert.ok(parent,`Missing parent ${c.data.module}`);
+    if(parent.data.topics.length)assert.ok(c.data.topic&&parent.data.topics.some(t=>t.id===c.data.topic),`Missing or unknown topic for ${c.data.id}`);
+    if(c.data.topic){const topic=parent.data.topics.find(t=>t.id===c.data.topic);assert.ok(topic,`Unknown topic ${c.data.topic}`);if(c.data.status==='published')assert.equal(topic.status,'published',`Published chapter has unpublished topic`);}
     if(c.data.status==='published')assert.equal(parent.data.status,'published','Published chapter has unpublished parent');
     if(c.data.experiment)assert.ok(Object.hasOwn(experimentRegistry,c.data.experiment),`Unknown experiment ${c.data.experiment}`);
   }

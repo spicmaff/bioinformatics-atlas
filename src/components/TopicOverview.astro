@@ -1,0 +1,17 @@
+---
+import type {Module,Topic} from '../lib/schema';
+import {readChapters,chapterPath,modulePath,resolveRef,visible} from '../lib/content';
+import {withBase} from '../lib/url';
+interface Props { module:Module; topic:Topic }
+const {module:m,topic:t}=Astro.props;
+const chapters=readChapters().map(c=>c.data).filter(c=>c.module===m.id&&c.topic===t.id&&visible(c.status)).sort((a,b)=>a.order-b.order);
+const planned=m.planned_chapters.filter(c=>c.topic===t.id&&!chapters.some(ch=>ch.slug===c.slug));
+---
+<div class="topic-overview not-content">
+ <nav class="learning-breadcrumbs" aria-label="Путь по учебнику"><a href={withBase(`catalog/?module=${m.id}`)}>Модули</a><span aria-hidden="true">/</span><a href={withBase(modulePath(m))}>{m.title}</a><span aria-hidden="true">/</span><span>Тема {String(m.topics.findIndex(x=>x.id===t.id)+1).padStart(2,'0')}</span></nav>
+ <p class="topic-intro">{t.summary}</p>
+ {t.theory.length>0&&<aside class="topic-theory"><span class="pixel-spark" aria-hidden="true"></span><div><strong>Небольшая опора перед началом</strong>{t.theory.map(r=><a href={withBase(resolveRef(r.ref,r.section))}>{r.ref==='T-DP'?'Что такое динамическое программирование':r.ref} ↗</a>)}</div></aside>}
+ <div class="contents-heading"><h2 id="algorithms">Алгоритмы</h2><span>Читайте по порядку или выберите нужный</span></div>
+ <ol class="algorithm-trail">{chapters.map((c,i)=><li><span class="algorithm-number">{String(i+1).padStart(2,'0')}</span><a href={withBase(chapterPath(c,[m]))}><span class="field-label">{c.estimated_minutes?`${c.estimated_minutes} МИНУТ · `:''}ИНТЕРАКТИВНАЯ ГЛАВА</span><h3>{c.title}</h3><p>{c.summary}</p><span class="algorithm-open">Открыть алгоритм <b aria-hidden="true">↗</b></span></a></li>)}{planned.map((c,i)=><li class="algorithm-planned" id={c.slug}><span class="algorithm-number">{String(chapters.length+i+1).padStart(2,'0')}</span><div><span class="field-label">СЛЕДУЮЩИЙ ШАГ · ГОТОВИТСЯ</span><h3>{c.title}</h3></div></li>)}</ol>
+ <a class="back-to-module" href={withBase(modulePath(m))}>← К темам модуля</a>
+</div>

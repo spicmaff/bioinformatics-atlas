@@ -1,0 +1,9 @@
+---
+interface Props { word: string }
+const {word}=Astro.props;
+const glyphs:Record<string,string[]>={Ж:['10101','10101','10101','01110','10101','10101','10101'],И:['10001','10001','10011','10101','11001','10001','10001'],В:['11110','10001','10001','11110','10001','10001','11110'],О:['01110','10001','10001','10001','10001','10001','01110'],Г:['11111','10000','10000','10000','10000','10000','10000']};
+---
+<svg class="pixel-word" viewBox={`0 0 ${word.length*6+1} 9`} aria-hidden="true" shape-rendering="crispEdges">
+  {Array.from(word).flatMap((letter,l)=>(glyphs[letter]||glyphs.О!).flatMap((row,y)=>Array.from(row).map((bit,x)=>bit==='1'&&<rect x={l*6+x} y={y+1} width="1" height="1"/>)))}
+  <rect x={word.length*6} y="7" width="1" height="1" class="pixel-full-stop"/>
+</svg>

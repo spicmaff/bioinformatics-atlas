@@ -7,52 +7,85 @@ branch: sequences
 role: core
 status: published
 question: Как задать область сопоставления и восстановить лучший путь?
-summary: Две последовательности и система оценок → оптимальное сопоставление целых строк, участков или концов при
-  заданных границах.
-feature: Переключаем local/fitting при неизменных строках; видим матрицу и traceback. Local может отбросить часть
-  короткой строки, fitting должен сопоставить её целиком.
+summary: Две последовательности и система оценок → оптимальное сопоставление
+  целых строк, участков или концов при заданных границах.
+feature: Переключаем local/fitting при неизменных строках; видим матрицу и
+  traceback. Local может отбросить часть короткой строки, fitting должен
+  сопоставить её целиком.
 prerequisites:
-- ref: F-BIO
-- ref: F-DATA
-- ref: F-ALGORITHM
+  - ref: F-BIO
+  - ref: F-DATA
+  - ref: F-ALGORITHM
 methods:
-- name: 'P/V1: Needleman–Wunsch, Smith–Waterman, PAM'
-  sources:
-  - p
-  - v1
-- name: 'P: BLOSUM. V1: ДП на DAG, LCS, edit distance, fitting/overlap, traceback и ничьи'
-  sources:
-  - p
-  - v1
-- name: аффинные штрафы, три состояния, middle edge и линейная память.
-  sources:
-  - p
-  - v1
+  - name: "P/V1: Needleman–Wunsch, Smith–Waterman, PAM"
+    sources:
+      - p
+      - v1
+  - name: "P: BLOSUM. V1: ДП на DAG, LCS, edit distance, fitting/overlap, traceback
+      и ничьи"
+    sources:
+      - p
+      - v1
+  - name: аффинные штрафы, три состояния, middle edge и линейная память.
+    sources:
+      - p
+      - v1
 sources:
-- id: p
-  work: P
-  locator: Программа v2, §2, M01; первичный локатор требует сверки перед написанием главы
-  depth: mentioned
-- id: v1
-  work: V1
-  locator: Программа v2, §2, M01; первичный локатор требует сверки перед написанием главы
-  depth: mentioned
+  - id: p
+    work: P
+    locator: Программа v2, §2, M01; первичный локатор требует сверки перед
+      написанием главы
+    depth: mentioned
+  - id: v1
+    work: V1
+    locator: Программа v2, §2, M01; первичный локатор требует сверки перед
+      написанием главы
+    depth: mentioned
 release_phase: 1
 sort_order: 20
 aliases:
-- Попарное выравнивание
+  - Попарное выравнивание
 tags:
-- dna
+  - dna
 related: []
 planned_chapters:
-- slug: smith-waterman
-  title: Локальное выравнивание Smith–Waterman
-- slug: boundaries
-  title: 'Fitting и overlap: граничные условия'
-- slug: affine-gaps
-  title: Аффинные штрафы и три состояния
-- slug: linear-memory
-  title: Линейная память и middle edge
+  - slug: smith-waterman
+    title: Локальное выравнивание Smith–Waterman
+    topic: M01-T01
+  - slug: boundaries
+    title: "Fitting и overlap: граничные условия"
+    topic: M01-T01
+  - slug: affine-gaps
+    title: Аффинные штрафы и три состояния
+    topic: M01-T02
+  - slug: linear-memory
+    title: Линейная память и middle edge
+    topic: M01-T03
+topics:
+  - id: M01-T01
+    slug: dynamic-programming
+    title: От префикса к матрице
+    summary: "Как сопоставить две последовательности: глобальное, локальное
+      выравнивание и выбор граничных условий."
+    status: published
+    order: 10
+    theory:
+      - ref: T-DP
+  - id: M01-T02
+    slug: scoring-models
+    title: Цена совпадения
+    summary: Как система оценок и модель пропусков меняют смысл оптимального
+      выравнивания.
+    status: planned
+    order: 20
+    theory: []
+  - id: M01-T03
+    slug: space-and-time
+    title: Когда матрица слишком велика
+    summary: Как восстановить оптимальный ответ с меньшим расходом памяти.
+    status: planned
+    order: 30
+    theory: []
 ---
 
 Здесь будут постепенно появляться самостоятельные главы модуля.

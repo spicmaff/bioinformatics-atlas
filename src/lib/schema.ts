@@ -13,6 +13,11 @@ const base = z.object({
   prerequisites: z.array(relation), sources: z.array(sourceSchema).min(1),
   related: z.array(relation).default([]),
 });
+export const topicSchema = z.object({
+  id: z.string().regex(/^[MK]\d{2}-T\d{2,}$/), slug, title: z.string().min(3),
+  summary: z.string().min(15), status: statusSchema, order: z.number().int().nonnegative(),
+  theory: z.array(relation).default([]),
+}).strict();
 export const moduleSchema = base.extend({
   id: z.string().regex(/^[MK]\d{2}$/), title_en: z.string().optional(),
   branch: z.enum(branches.map(b => b.id) as [string, ...string[]]),
@@ -21,15 +26,17 @@ export const moduleSchema = base.extend({
   methods: z.array(z.object({ name: z.string().min(1), sources: z.array(slug).min(1) }).strict()).min(1),
   release_phase: z.number().int().min(1).max(7), sort_order: z.number().int().nonnegative(),
   aliases: z.array(z.string()).default([]), tags: z.array(z.string()).default([]),
-  planned_chapters: z.array(z.object({ slug, title: z.string().min(3) }).strict()).default([]),
+  topics: z.array(topicSchema).default([]),
+  planned_chapters: z.array(z.object({ slug, title: z.string().min(3), topic: z.string().optional() }).strict()).default([]),
 }).strict();
 export const chapterSchema = base.extend({
   id: z.string().regex(/^[MK]\d{2}-C\d{2,}$/), module: z.string().regex(/^[MK]\d{2}$/),
   summary: z.string().min(15), question: z.string().min(8), order: z.number().int().nonnegative(),
-  experiment: z.string().optional(), estimated_minutes: z.number().int().positive().optional(),
+  topic: z.string().optional(), experiment: z.string().optional(), estimated_minutes: z.number().int().positive().optional(),
 }).strict();
 export const referenceSchema = base.extend({ order: z.number().int().nonnegative(), summary: z.string().min(10) }).strict();
 export type Module = z.infer<typeof moduleSchema>;
+export type Topic = z.infer<typeof topicSchema>;
 export type Chapter = z.infer<typeof chapterSchema>;
 export type Reference = z.infer<typeof referenceSchema>;
 export type Source = z.infer<typeof sourceSchema>;

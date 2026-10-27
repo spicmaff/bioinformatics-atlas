@@ -1,0 +1,11 @@
+---
+import type {Chapter} from '../lib/schema';
+import {readModules,readChapters,modulePath,topicPath,chapterPath,visible} from '../lib/content';
+import {withBase} from '../lib/url';
+interface Props {chapter:Chapter; footer?:boolean}
+const {chapter:c,footer=false}=Astro.props;
+const m=readModules().find(m=>m.data.id===c.module)!.data,t=m.topics.find(t=>t.id===c.topic);
+const siblings=readChapters().map(e=>e.data).filter(e=>e.module===m.id&&e.topic===c.topic&&visible(e.status)).sort((a,b)=>a.order-b.order),index=siblings.findIndex(e=>e.id===c.id);
+const next=siblings[index+1],planned=m.planned_chapters.find(p=>p.topic===c.topic&&!siblings.some(e=>e.slug===p.slug));
+---
+{footer?<nav class="chapter-pager not-content" aria-label="Следующий алгоритм"><a href={withBase(t?topicPath(m,t):modulePath(m))}>← {t?'Все алгоритмы темы':'Все главы модуля'}</a>{next?<a href={withBase(chapterPath(next,[m]))}>Далее: {next.title} →</a>:planned&&t?<a href={withBase(topicPath(m,t)+`#${planned.slug}`)}><small>Готовится следующий алгоритм</small>{planned.title} →</a>:null}</nav>:<nav class="learning-breadcrumbs reader-breadcrumbs not-content" aria-label="Путь по учебнику"><a href={withBase(`catalog/?module=${m.id}`)}>Модули</a><span aria-hidden="true">/</span><a href={withBase(modulePath(m))}>{m.id}</a>{t&&<><span aria-hidden="true">/</span><a href={withBase(topicPath(m,t))}>{t.title}</a></>}<span class="reader-algorithm-number">Алгоритм {String(index+1).padStart(2,'0')}</span></nav>}

@@ -1,11 +1,21 @@
 ---
 import Search from '@astrojs/starlight/components/Search.astro';
 import { withBase } from '../lib/url';
-const links = [['catalog/','Каталог'],['routes/','Маршруты'],['foundations/','Основы'],['sources/','Источники']];
+const links=[['catalog/','Модули'],['foundations/','Основы'],['sources/','Источники']];
 ---
 <div class="atlas-header">
-  <a class="atlas-brand" href={withBase()} aria-label="Биоинформатика: методы и алгоритмы — главная"><span class="brand-symbol" aria-hidden="true">↗</span><span>БИО<span class="brand-divider">/</span>АТЛАС<small>методы и алгоритмы</small></span></a>
-  <nav class="top-nav" aria-label="Основные разделы">{links.map(([path,title])=><a href={withBase(path)} aria-current={Astro.url.pathname === withBase(path) ? 'page' : undefined}>{title}</a>)}</nav>
-  <details class="mobile-top-nav"><summary>Разделы</summary><nav aria-label="Основные разделы на мобильном">{links.map(([path,title])=><a href={withBase(path)}>{title}</a>)}</nav></details>
+  <a class="atlas-brand" href={withBase()} aria-label="Биоинформатика: методы и алгоритмы — главная"><span class="brand-moth" aria-hidden="true"><i></i><i></i><i></i></span><span>БИО <b>/</b> АТЛАС<small>маленькие миры, большие вопросы</small></span></a>
+  <nav class="top-nav" aria-label="Основные разделы">{links.map(([path,title])=><a href={withBase(path)} aria-current={Astro.url.pathname===withBase(path)?'page':undefined}><i aria-hidden="true"></i>{title}</a>)}</nav>
+  <details class="mobile-top-nav"><summary>Разделы</summary><nav aria-label="Основные разделы на мобильном">{links.map(([path,title])=><a href={withBase(path)}>{title}</a>)}<a href={withBase('glossary/')}>Словарь</a></nav></details>
+  <button class="effects-control" id="effects-control" type="button" aria-pressed="true" aria-label="Декоративное движение"><i aria-hidden="true">✦</i><span>Движение</span></button>
   <div class="atlas-search"><Search /></div>
 </div>
+<script>
+function initMotion(){
+ const button=document.getElementById('effects-control');let enabled=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ try{const stored=localStorage.getItem('atlas-motion');if(stored)enabled=stored==='full'&&enabled;}catch{}
+ const sync=()=>{document.documentElement.dataset.motion=enabled?'full':'reduced';button?.setAttribute('aria-pressed',String(enabled));};sync();
+ button?.addEventListener('click',()=>{enabled=!enabled;try{localStorage.setItem('atlas-motion',enabled?'full':'reduced');}catch{}sync();});
+}
+initMotion();document.addEventListener('astro:page-load',initMotion);
+</script>

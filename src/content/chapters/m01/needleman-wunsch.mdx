@@ -7,26 +7,28 @@ status: published
 order: 10
 estimated_minutes: 20
 question: Как сопоставить две последовательности целиком и восстановить лучший путь?
-summary: 'Две строки, три оценки и наблюдаемое заполнение матрицы: от префиксов до одного или нескольких оптимальных
-  выравниваний.'
+summary: "Две строки, три оценки и наблюдаемое заполнение матрицы: от префиксов
+  до одного или нескольких оптимальных выравниваний."
 prerequisites:
-- ref: F-DATA
-  section: axes
-- ref: F-ALGORITHM
-  section: states-and-transitions
+  - ref: F-DATA
+    section: axes
+  - ref: F-ALGORITHM
+    section: states-and-transitions
 related:
-- ref: T-DP
-- ref: M13
+  - ref: T-DP
+  - ref: M13
 experiment: needleman-wunsch
 sources:
-- id: needleman-wunsch
-  work: NW1970
-  locator: Journal of Molecular Biology 48(3), 1970, 443–453; историческая постановка метода
-  depth: external
-- id: plan
-  work: PLAN
-  locator: §5 M01; §4, экран парного выравнивания; собственные учебные контроли
-  depth: example
+  - id: needleman-wunsch
+    work: NW1970
+    locator: Journal of Molecular Biology 48(3), 1970, 443–453; историческая
+      постановка метода
+    depth: external
+  - id: plan
+    work: PLAN
+    locator: §5 M01; §4, экран парного выравнивания; собственные учебные контроли
+    depth: example
+topic: M01-T01
 ---
 
 import Definition from '@/components/learning/Definition.astro';

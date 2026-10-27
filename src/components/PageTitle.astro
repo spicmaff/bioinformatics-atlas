@@ -1,0 +1,5 @@
+---
+import { withBase } from '../lib/url';
+const ownTitle=[withBase(),withBase('catalog/')].includes(Astro.url.pathname);
+---
+{!ownTitle&&<h1 id="_top" class="atlas-page-title">{Astro.locals.starlightRoute.entry.data.title}</h1>}

@@ -10,11 +10,15 @@ const required=(name:string)=>{const s=options.get(name);if(!s)throw new Error(`
 const slug=required('slug'),title=required('title');if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))throw new Error('Slug must be lowercase kebab-case');
 const modules=readModules(),chapters=readChapters();let file:string,meta:Record<string,unknown>;
 if(kind==='chapter'){
- const id=required('module');if(!modules.some(m=>m.data.id===id))throw new Error(`Unknown module ${id}`);
+ const id=required('module');const parent=modules.find(m=>m.data.id===id);if(!parent)throw new Error(`Unknown module ${id}`);
+ const topic=options.get('topic')||parent.data.topics[0]?.id;
+ if(topic&&!parent.data.topics.some(t=>t.id===topic))throw new Error(`Unknown topic ${topic} in ${id}`);
+ if(topic&&parent.data.topics.find(t=>t.id===topic)?.status==='planned')throw new Error('Change the topic status from planned to draft before writing its first chapter.');
  if(chapters.some(c=>c.data.module===id&&c.data.slug===slug))throw new Error('Chapter slug already exists');
  const next=Math.max(0,...chapters.filter(c=>c.data.module===id).map(c=>Number(c.data.id.split('-C')[1])))+1;
  const order=Math.max(0,...chapters.filter(c=>c.data.module===id).map(c=>c.data.order))+10;
  meta={id:`${id}-C${String(next).padStart(2,'0')}`,module:id,slug,title,status:'draft',order,question:'Какой проверяемый вопрос решает эта глава?',summary:'Черновик самостоятельной главы. Уточните вход, выход и границы модели.',prerequisites:[],sources:[{id:'plan',work:'PLAN',locator:'Редакторский замысел; замените на точные научные источники до review',depth:'mentioned'}]};
+ if(topic)meta.topic=topic;
  file=`src/content/chapters/${id.toLowerCase()}/${slug}.mdx`;
 }else if(kind==='module'){
  const branch=required('branch');if(!branches.some(b=>b.id===branch))throw new Error(`Unknown branch ${branch}`);
